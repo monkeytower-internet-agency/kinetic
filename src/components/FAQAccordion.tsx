@@ -13,6 +13,7 @@ interface Props {
 
 const FAQAccordion: React.FC<Props> = ({ items }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const toggle = (index: number) => {
@@ -21,12 +22,45 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
   };
 
   useEffect(() => {
+    // Entrance animation
+    if (containerRef.current) {
+      const items = containerRef.current.querySelectorAll(".faq-item");
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    // Accordion expand/collapse
     contentRefs.current.forEach((el, i) => {
       if (!el) return;
       if (openIndex === i) {
-        gsap.to(el, { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" });
+        gsap.to(el, { 
+          height: "auto", 
+          opacity: 1, 
+          duration: 0.5, 
+          ease: "elastic.out(1, 0.8)" 
+        });
       } else {
-        gsap.to(el, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut" });
+        gsap.to(el, { 
+          height: 0, 
+          opacity: 0, 
+          duration: 0.3, 
+          ease: "power2.inOut" 
+        });
       }
     });
   }, [openIndex]);
@@ -34,27 +68,31 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="space-y-4 max-w-4xl mx-auto w-full">
+    <div ref={containerRef} className="space-y-6 max-w-4xl mx-auto w-full">
       {items.map((item, i) => (
         <div 
           key={i} 
-          className={`group overflow-hidden rounded-3xl border transition-all duration-300 ${
+          className={`faq-item group overflow-hidden rounded-[2.5rem] border backdrop-blur-md transition-all duration-500 ${
             openIndex === i 
-              ? "bg-white/10 border-brand shadow-2xl" 
-              : "bg-white/5 border-white/10 hover:bg-white/[0.07]"
+              ? "bg-white/[0.08] border-brand/50 shadow-[0_30px_100px_rgba(var(--theme-brand-rgb),0.1)]" 
+              : "bg-surface/30 border-white/5 hover:bg-white/[0.05] hover:border-white/10"
           }`}
         >
           <button
             onClick={() => toggle(i)}
-            className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+            className="w-full flex items-center justify-between p-8 md:p-10 text-left focus:outline-none"
           >
-            <span className={`text-xl font-bold transition-colors ${openIndex === i ? "text-brand" : "text-white"}`}>
+            <span className={`text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 ${openIndex === i ? "text-brand" : "text-white"}`}>
               {item.label}
             </span>
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
-              openIndex === i ? "bg-brand rotate-180" : "bg-white/10"
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-700 ${
+              openIndex === i ? "bg-brand rotate-180 shadow-lg" : "bg-white/5 group-hover:bg-white/10"
             }`}>
-              {openIndex === i ? <Minus className="w-5 h-5 text-white" /> : <Plus className="w-5 h-5 text-white" />}
+              {openIndex === i ? (
+                <Minus className="w-6 h-6 text-white" />
+              ) : (
+                <Plus className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
+              )}
             </div>
           </button>
           
@@ -62,7 +100,7 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
             ref={el => contentRefs.current[i] = el}
             className="overflow-hidden h-0 opacity-0"
           >
-            <div className="p-6 md:p-8 pt-0 text-zinc-400 font-light leading-relaxed">
+            <div className="p-8 md:p-10 pt-0 text-white/50 font-light leading-relaxed text-lg max-w-3xl">
               {item.value}
             </div>
           </div>
@@ -71,5 +109,6 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
     </div>
   );
 };
+
 
 export default FAQAccordion;

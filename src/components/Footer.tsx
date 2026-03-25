@@ -20,23 +20,24 @@ const Footer: React.FC<Props> = ({ lang = "de" }) => {
           />
         </div>
 
-        <div className="flex gap-8 text-xs font-medium text-content/60 mb-8 uppercase tracking-widest">
+        <div className="flex gap-8 text-xs font-medium text-white/60 mb-8 uppercase tracking-widest">
           <a
             href="/datenschutz"
-            className="hover:text-content transition-colors"
+            className="hover:text-white transition-colors"
           >
             {t("footer.privacy")}
           </a>
-          <a href="/impressum" className="hover:text-content transition-colors">
+          <a href="/impressum" className="hover:text-white transition-colors">
             {t("footer.imprint")}
           </a>
         </div>
-        <p className="text-[10px] text-content/40 font-medium">
+        <p className="text-[10px] text-white/40 font-medium">
           © {new Date().getFullYear()} ProFly. {t("footer.tagline")}
         </p>
-        <p className="text-[9px] text-content/30 mt-1 font-mono opacity-50">
+        <p className="text-[9px] text-white/20 mt-1 font-mono opacity-50">
           v{new Date().toISOString().slice(0, 16).replace("T", " ")}
         </p>
+
       </div>
     </footer>
   );
