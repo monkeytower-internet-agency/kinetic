@@ -7,12 +7,13 @@ import type { ColorAccent, ColorMode } from "../stores/themeStore";
 
 
 const accents: { id: ColorAccent; label: string; bgClass: string }[] = [
-  { id: "verkehrsrot", label: "ProFly", bgClass: "bg-[#c1121c]" },
+  { id: "verkehrsrot", label: "ProFly Ruby", bgClass: "bg-[#c1121c]" },
   { id: "diva", label: "Diva", bgClass: "bg-[#BAE93D]" },
   { id: "sangry", label: "Sangry", bgClass: "bg-[#C4577D]" },
   { id: "korben", label: "Korben", bgClass: "bg-[#F19D5B]" },
   { id: "neptune", label: "Neptune", bgClass: "bg-[#6FB1CD]" },
 ];
+
 
 
 
@@ -145,10 +146,9 @@ const ThemeSwitcher: React.FC = () => {
             fontSize: (14 + lockedMenuSize * 2) + "px",
             lineHeight: "1.5"
           }} 
-        >
-          {/* Dark / Light Mode Toggle */}
+                  {/* Dark / Light Mode Toggle */}
           <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-3 px-1 flex justify-between items-center">
+            <div className="text-[11px] font-bold tracking-tight text-content/40 mb-3 px-1 flex justify-between items-center">
               <span>Darstellung</span>
               <span className="text-content/30 font-normal lowercase tracking-normal">
                 {currentMode === "system" ? "System" : currentMode}
@@ -160,7 +160,7 @@ const ThemeSwitcher: React.FC = () => {
                   type="button"
                   key={m.id}
                   onClick={() => colorMode.set(m.id)}
-                  className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-xl text-[10px] font-bold transition-all cursor-pointer ${
+                  className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-xl text-[11px] font-bold transition-all cursor-pointer ${
                     currentMode === m.id
                       ? "bg-brand text-brand-text shadow-lg scale-[1.05]"
                       : "text-content/60 hover:text-content hover:bg-surface-border/50"
@@ -173,10 +173,10 @@ const ThemeSwitcher: React.FC = () => {
             </div>
           </div>
 
-          {/* Accent Color Selection - Labeled List */}
+          {/* Accent Color Selection - ProFly Colors */}
           <div className="pt-2 border-t border-surface-border">
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-4 px-1">
-              Farbwahl
+            <div className="text-[11px] font-bold tracking-tight text-content/40 mb-4 px-1">
+              ProFly colors
             </div>
             <div className="grid grid-cols-5 gap-4">
               {accents.map((a) => (
@@ -196,7 +196,7 @@ const ThemeSwitcher: React.FC = () => {
                       <div className="absolute -inset-1 rounded-full border-2 border-brand" />
                     )}
                   </button>
-                  <span className={`text-[8px] font-bold uppercase tracking-tighter transition-colors ${currentAccent === a.id ? "text-brand" : "text-content/40 group-hover:text-content"}`}>
+                  <span className={`text-[9px] font-bold tracking-tight transition-colors ${currentAccent === a.id ? "text-brand" : "text-content/40 group-hover:text-content"}`}>
                     {a.label}
                   </span>
                 </div>
@@ -206,14 +206,14 @@ const ThemeSwitcher: React.FC = () => {
 
           {/* Accessibility Section */}
           <div className="pt-2 border-t border-surface-border space-y-4">
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-3 px-1 flex justify-between items-center opacity-100!">
+            <div className="text-[11px] font-bold tracking-tight text-content/40 mb-3 px-1 flex justify-between items-center opacity-100!">
               <span>Konfiguration</span>
               <button 
                 onClick={() => {
                   highContrast.set(false);
                   textSize.set(1);
                 }}
-                className="flex items-center gap-1 text-[10px] text-brand hover:brightness-110 cursor-pointer font-bold uppercase tracking-wider"
+                className="flex items-center gap-1 text-[10px] text-brand hover:brightness-110 cursor-pointer font-medium tracking-tight"
               >
                 <RotateCcw className="w-3 h-3" /> Reset
               </button>
@@ -228,9 +228,9 @@ const ThemeSwitcher: React.FC = () => {
                   : "bg-body border-surface-border text-content/60 hover:border-brand/40"
               }`}
             >
-              <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-widest opacity-100!">
+              <div className="flex items-center gap-2 font-bold text-xs tracking-tight opacity-100!">
                 <Contrast className="w-4 h-4" />
-                Contrast
+                High Contrast
               </div>
               <div 
                 className={`w-8 h-4 rounded-full relative transition-colors ${isHighContrast ? "bg-brand" : "bg-black/20"}`}
@@ -240,10 +240,9 @@ const ThemeSwitcher: React.FC = () => {
               </div>
             </button>
 
-
             {/* Text Size Selector - Glider Sizing Icons/Buttons */}
             <div className="space-y-3 bg-body p-3 rounded-xl border border-surface-border">
-              <div className="text-[10px] font-bold uppercase tracking-widest text-content/40 mb-2 opacity-100!">
+              <div className="text-[11px] font-bold tracking-tight text-content/40 mb-2 opacity-100!">
                 <div className="flex items-center gap-2">
                   <Type className="w-4 h-4" /> Size
                 </div>
@@ -265,10 +264,10 @@ const ThemeSwitcher: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
       )}
     </div>
+
   );
 };
 
