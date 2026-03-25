@@ -12,6 +12,7 @@ const getNavItems = (t: any, lang: Language) => {
     { label: t("nav.specs"), href: "/#specs" },
     { label: t("nav.safety"), href: "/#safety" },
     { label: t("nav.media"), href: "/#media" },
+    { label: t("nav.testimonials"), href: "/#testimonials" },
     { label: t("nav.sizing"), href: "/#sizing" },
     { label: t("nav.faq"), href: "/#faq" },
 

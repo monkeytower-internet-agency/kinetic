@@ -12,13 +12,16 @@ const Footer: React.FC<Props> = ({ lang = "de" }) => {
     <footer className="py-12 px-8 border-t border-white/5 bg-[#0a0a0a] text-white/50 dark">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
 
-        <div className="mb-10">
-          <img 
-            src="/assets/profly-logo-art.png" 
-            alt="ProFly - The Art of Paragliding" 
-            className="h-16 w-auto opacity-90"
-          />
+        <div Name="mb-10">
+          <a href="https://profly.org" target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/assets/profly-logo-art.png" 
+              alt="ProFly - The Art of Paragliding" 
+              className="h-16 w-auto opacity-90"
+            />
+          </a>
         </div>
+
 
         <div className="flex gap-8 text-xs font-medium text-white/60 mb-8 uppercase tracking-widest">
           <a

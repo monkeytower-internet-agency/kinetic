@@ -1,9 +1,9 @@
-slug: de/fit-system
+slug: fit-system
 type: text
 title: Perfect Fit
-heading: "Unser 3x3 PERFECT FIT System"
+heading: "Unser <span class='text-brand'>3x3 PERFECT FIT</span> System"
 content: "Einer der größten Gründe, warum Liegegurtzeuge manchmal „nicht passen“: Beine und Oberkörper sind nicht gleich proportioniert. Deshalb kommt KINETIC mit 3×3 Fit System: 3 Beinlängen × 3 Oberkörperlängen = 9 Kombinationen. So entsteht eine Passform, die sich nicht an Kompromissen orientiert, sondern an deinem Körper."
-subheading: "Lass dich zu deiner perfekten Größe beraten."
+subheading: "weil Kontrolle bei der Passform beginnt."
 button_text: "Beratung anfragen"
 items:
   - label: "Beinlängen"
@@ -12,3 +12,4 @@ items:
     value: "3x"
   - label: "Kombinationen"
     value: "9x"
+

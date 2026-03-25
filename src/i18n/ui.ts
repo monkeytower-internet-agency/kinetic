@@ -13,7 +13,9 @@ export const ui = {
     "nav.safety": "Safety",
     "nav.media": "Media",
     "nav.faq": "FAQ",
+    "nav.testimonials": "Testimonials",
     "nav.contact": "Kontakt",
+
     "footer.privacy": "Datenschutz",
     "footer.imprint": "Impressum",
     "footer.tagline": "KINETIC - pure control | das neue Gurtzeug von Profly",
@@ -28,7 +30,9 @@ export const ui = {
     "nav.safety": "Safety",
     "nav.media": "Media",
     "nav.faq": "FAQ",
+    "nav.testimonials": "Testimonials",
     "nav.contact": "Contact",
+
     "footer.privacy": "Privacy",
     "footer.imprint": "Imprint",
     "footer.tagline": "KINETIC - pure control | the new harness by Profly",

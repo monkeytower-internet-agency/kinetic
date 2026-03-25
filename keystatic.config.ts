@@ -20,12 +20,13 @@ export default config({
   collections: {
     sections: collection({
       label: 'Landing Page Sections (German)',
-      slugField: 'title',
+      slugField: 'slug',
       path: 'src/content/sections/de/*',
       format: { data: 'yaml' },
       schema: {
-        title: fields.text({ label: 'Internal Title (for Keystatic list)' }),
-        slug: fields.text({ label: 'System Slug (e.g. de/hero)', description: 'Do not change unless necessary' }),
+        title: fields.text({ label: 'Display Title (Public)', description: 'The title shown on the website buttons or section headers' }),
+        slug: fields.text({ label: 'System Identifier (Slug)', description: 'CRITICAL: DO NOT change. Used as ID in code (e.g. "hero", "faq").' }),
+
 
         type: fields.select({
           label: 'Section Type',

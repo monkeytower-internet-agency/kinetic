@@ -27,42 +27,64 @@ function KineticPod() {
     }
   });
 
+  const bodyColor = "#383e42"; // Anthrazit/Metal
+  const seatColor = "#c1121c"; // ProFly Red (Inner Core)
+  const accentColor = "#ffffff";
 
   return (
     <group ref={meshRef}>
       <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
-        {/* Main Body - A stylized competition harness pod */}
-        <mesh scale={[2.5, 0.7, 0.8]}>
-          <sphereGeometry args={[1, 64, 64]} />
-          <meshStandardMaterial 
-            color="#c1121c" 
-            metalness={0.9} 
-            roughness={0.1}
-            emissive="#c1121c"
-            emissiveIntensity={0.1}
-          />
+        
+        {/* 1. SEAT & COCKPIT (Inner Core - Now Red) */}
+        <mesh position={[0.2, 0.15, 0]} rotation={[0, 0, Math.PI / 8]}>
+          <boxGeometry args={[1.2, 0.8, 0.9]} />
+          <meshStandardMaterial color={seatColor} metalness={0.8} roughness={0.2} emissive={seatColor} emissiveIntensity={0.2} />
         </mesh>
 
-        {/* Technological accents (Wireframe) */}
-        <mesh scale={[2.52, 0.72, 0.82]}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshBasicMaterial 
-            color="#ffffff" 
-            wireframe 
-            transparent 
-            opacity={0.15} 
-          />
+        {/* 2. MAIN POD BODY (Central Section - Dark Metallic) */}
+        <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.55, 0.55, 2.2, 64]} />
+          <meshStandardMaterial color={bodyColor} metalness={0.9} roughness={0.15} />
         </mesh>
 
-        {/* Small "cockpit" or seat detail */}
-        <mesh position={[0.4, 0.1, 0]} scale={[1, 0.5, 0.7]}>
-          <boxGeometry />
-          <meshStandardMaterial color="#111" metalness={0.5} roughness={0.5} />
+        {/* 3. AERO NOSE (Tapered Front) */}
+        <mesh position={[1.5, 0.1, 0]} rotation={[0, 0, -Math.PI / 2]}>
+          <coneGeometry args={[0.55, 1.2, 64]} />
+          <meshStandardMaterial color={bodyColor} metalness={0.9} roughness={0.15} />
         </mesh>
+
+        {/* 4. TAIL FAIRING (Inflatable Tail) */}
+        <mesh position={[-1.8, 0.25, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.05, 0.55, 1.8, 64]} />
+          <meshStandardMaterial color={bodyColor} metalness={0.9} roughness={0.15} />
+        </mesh>
+
+
+        {/* 5. TECHNOLOGY LAYER (Wireframe Highlights) */}
+        <group scale={[1.02, 1.02, 1.02]}>
+           {/* Body Wire */}
+           <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+             <cylinderGeometry args={[0.57, 0.57, 2.3, 32]} />
+             <meshBasicMaterial color={accentColor} wireframe transparent opacity={0.1} />
+           </mesh>
+           {/* Tail Wire */}
+           <mesh position={[-1.8, 0.25, 0]} rotation={[0, 0, Math.PI / 2]}>
+             <cylinderGeometry args={[0.07, 0.57, 1.9, 16]} />
+             <meshBasicMaterial color={accentColor} wireframe transparent opacity={0.1} />
+           </mesh>
+        </group>
+
+        {/* 6. STRUCTURAL STRAPS (Visual Accents) */}
+        <mesh position={[0.4, 0.4, 0]} rotation={[Math.PI / 2, 0, 0]}>
+           <torusGeometry args={[0.45, 0.02, 16, 100]} />
+           <meshBasicMaterial color={accentColor} transparent opacity={0.3} />
+        </mesh>
+
       </Float>
     </group>
   );
 }
+
 
 const Hero3D: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
