@@ -33,13 +33,15 @@ const { title = t("footer.tagline") } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ClientRouter />
+    <ClientRouter fallback="swap" />
     <style is:global>
       /* Smooth transitions for View Transitions */
       ::view-transition-old(root),
       ::view-transition-new(root) {
-        animation-duration: 0.5s;
+        animation-duration: 0.3s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
+
 
       @keyframes pulse-subtle {
         0%,
@@ -59,17 +61,19 @@ const { title = t("footer.tagline") } = Astro.props;
   <body
     class="bg-body text-content antialiased overflow-x-hidden transition-colors duration-500"
   >
-    <Header lang={lang} announcement={settings?.data?.announcement} client:load />
+    <Header lang={lang} announcement={settings?.data?.announcement} client:load transition:persist />
+
     <CursorGlow client:load />
 
 
 
-    <div class="relative">
+    <div class="relative" transition:animate="fade">
       <main>
         <slot />
       </main>
     </div>
 
-    <Footer lang={lang} client:load />
+    <Footer lang={lang} client:load transition:persist />
   </body>
+
 </html>
