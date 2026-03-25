@@ -33,7 +33,38 @@ const { title = t("footer.tagline") } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      (function() {
+        const savedMode = localStorage.getItem("theme-mode") || "system";
+        const savedAccent = localStorage.getItem("theme-accent") || "verkehrsrot";
+        const isContrast = localStorage.getItem("theme-contrast") === "true";
+        const savedTextSize = localStorage.getItem("theme-text-size") || "2";
+
+        const applyMode = (mode) => {
+          if (mode === "dark" || (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        };
+
+        applyMode(savedMode);
+        document.documentElement.setAttribute("data-brand", savedAccent);
+        if (isContrast) document.documentElement.classList.add("high-contrast");
+        
+        const sizes = ["small", "base", "medium", "large", "xl"];
+        document.documentElement.classList.add(`text-size-${sizes[parseInt(savedTextSize)] || "base"}`);
+
+        // Handle Astro View Transitions - Persist on navigation
+        document.addEventListener('astro:after-swap', () => {
+          applyMode(localStorage.getItem("theme-mode") || "system");
+          document.documentElement.setAttribute("data-brand", localStorage.getItem("theme-accent") || "verkehrsrot");
+          if (localStorage.getItem("theme-contrast") === "true") document.documentElement.classList.add("high-contrast");
+        });
+      })();
+    </script>
     <ClientRouter fallback="swap" />
+
     <style is:global>
       /* Smooth transitions for View Transitions */
       ::view-transition-old(root),
