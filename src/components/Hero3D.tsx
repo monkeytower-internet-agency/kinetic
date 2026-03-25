@@ -73,8 +73,10 @@ const Hero3D: React.FC = () => {
         height: '100%', 
         position: 'absolute', 
         inset: 0,
+        overflow: 'hidden',
         pointerEvents: isBlocked ? 'none' : 'auto' // Prevent interaction when menu is open
       }}
+
     >
       <Canvas 
         shadows 

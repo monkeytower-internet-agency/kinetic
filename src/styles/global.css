@@ -49,8 +49,14 @@
   src: url("/fonts/inter-v20-latin-900.woff2") format("woff2");
 }
 
+html,
 body {
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
