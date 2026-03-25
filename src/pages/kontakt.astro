@@ -1,0 +1,51 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ContactForm from "../components/ContactForm";
+import ContactCard from "../components/ContactCard";
+import { getEntry, getCollection } from "astro:content";
+
+// Fetch settings or site content if needed, but for now we keep it simple
+const turnstileSiteKey =
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ||
+  process.env.PUBLIC_TURNSTILE_SITE_KEY ||
+  "";
+
+const pageTitle = "Kontakt | ParaNomad";
+---
+
+<MainLayout title={pageTitle}>
+  <main class="py-24 px-4 bg-surface min-h-[80vh]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-[10px] font-bold uppercase tracking-[0.4em] text-brand mb-4"
+        >
+          Kontakt
+        </h2>
+        <h2
+          class="text-4xl md:text-6xl font-extralight text-content tracking-tighter mb-4 antialiased leading-tight"
+        >
+          Nimm <span class="font-bold text-brand">Kontakt</span> mit mir auf!
+        </h2>
+        <p
+          class="text-content/70 text-lg font-light tracking-wide max-w-xl mx-auto"
+        >
+          Fragen, Ideen, oder direkt dein Projekt besprechen? Ich freu mich
+          drauf.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div
+          class="lg:col-span-2 bg-surface rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.04)] border border-surface-border p-8 md:p-10"
+        >
+          <ContactForm turnstileSiteKey={turnstileSiteKey} client:visible />
+        </div>
+
+        <div class="lg:col-span-1">
+          <ContactCard client:visible />
+        </div>
+      </div>
+    </div>
+  </main>
+</MainLayout>

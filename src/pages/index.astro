@@ -1,0 +1,106 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroSlider from "../components/HeroSlider";
+import QuizWizard from "../components/QuizWizard";
+import FlipCardGrid from "../components/FlipCardGrid";
+import SystemSection from "../components/SystemSection";
+import RotatingHeadline from "../components/RotatingHeadline";
+import ContactForm from "../components/ContactForm";
+import ContactCard from "../components/ContactCard";
+import AboutSection from "../components/AboutSection";
+import ShowroomSection from "../components/ShowroomSection";
+
+import { getEntry, getCollection } from "astro:content";
+
+// 1. Fetch Page Content
+const allSections = await getCollection("sections");
+const hero = allSections.find((s) => s.id.includes("hero"))?.data;
+const system = allSections.find((s) => s.id.includes("system"))?.data;
+const vorteile = allSections.find((s) => s.id.includes("vorteile"))?.data;
+const about = allSections.find((s) => s.id.includes("about"))?.data;
+
+const showroomEntries = await getCollection("showrooms");
+const showrooms = showroomEntries
+  .map((entry) => ({
+    ...entry.data,
+    name: entry.id,
+  }))
+  .sort((a, b) => b.name.localeCompare(a.name)); // muenchen (M) before geldern (G)
+
+const turnstileSiteKey =
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ||
+  process.env.PUBLIC_TURNSTILE_SITE_KEY ||
+  "";
+
+// Dynamic page title
+const BASE_TITLE = hero?.title || "ParaNomad modular van build";
+const branch = process.env.SITE_BRANCH || "";
+const isMain = !branch || branch === "main";
+const isDev = import.meta.env.DEV;
+const branchPrefix = isMain ? "" : `${branch} `;
+const envPrefix = isDev ? "mac " : "";
+const pageTitle = `${envPrefix}${branchPrefix}${BASE_TITLE}`;
+---
+
+<MainLayout title={pageTitle}>
+  <main class="pt-2 md:pt-8 pb-8">
+    {/* Hero Text Section (Contained) */}
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center space-y-6 mx-auto px-4 z-10 relative">
+        <RotatingHeadline client:load />
+        <p
+          class="text-base md:text-lg text-content/70 max-w-4xl mx-auto leading-relaxed font-light"
+          set:html={hero?.subtitle ||
+            "Modularer Camper-Ausbau. Kein Wertverlust, kein Werkzeug, 100% Alltagstauglichkeit."}
+        />
+
+        <div
+          class="pt-4 md:pt-8 flex flex-nowrap justify-center items-center gap-2 md:gap-4 px-2 w-full"
+        >
+          <a
+            href="/system"
+            class="flex-1 min-w-0 text-center border-2 border-brand text-brand font-bold rounded-2xl px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 whitespace-nowrap"
+          >
+            {hero?.cta_primary || "Was ist das?"}
+          </a>
+          <a
+            href="/quiz"
+            class="flex-1 min-w-0 text-center bg-brand text-white rounded-2xl font-bold px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand-hover hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand/20 transition-all duration-300 whitespace-nowrap"
+          >
+            {hero?.cta_secondary || "Projekt-Check"}
+          </a>
+          <a
+            href="/showroom"
+            class="flex-1 min-w-0 text-center border-2 border-brand text-brand font-bold rounded-2xl px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 whitespace-nowrap"
+          >
+            {hero?.cta_tertiary || "Live erleben"}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-12 md:px-8 mt-6 md:mt-10">
+      <HeroSlider client:visible />
+    </div>
+
+    {/* Funny YouTube Outro */}
+    <div class="py-24 px-4 bg-body text-center">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <h3 class="text-xl md:text-2xl font-bold text-content tracking-tight">
+          Danke für's Zuschauen!
+        </h3>
+        <p class="text-content/70 text-lg font-light italic">
+          "Wenn's Dir gefallen hat, lass ein Abo da und aktiviere die Glocke!
+          😉"
+        </p>
+        <div class="pt-4">
+          <span
+            class="text-[10px] text-content/40 uppercase tracking-[0.3em] font-bold"
+          >
+            (Oder schreib mir einfach eine Mail)
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
+</MainLayout>

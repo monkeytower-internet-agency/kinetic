@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* inter-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/inter-v20-latin-300.woff2") format("woff2");
+}
+/* inter-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/inter-v20-latin-regular.woff2") format("woff2");
+}
+/* inter-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/inter-v20-latin-500.woff2") format("woff2");
+}
+/* inter-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/inter-v20-latin-700.woff2") format("woff2");
+}
+/* inter-800 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/fonts/inter-v20-latin-800.woff2") format("woff2");
+}
+/* inter-900 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts/inter-v20-latin-900.woff2") format("woff2");
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  /* Boxxtool Base Palette */
+  --color-translucent: #f5f5f5;
+  --color-hellgrau: #c5c7c4;
+  --color-anthrazit: #383e42;
+  --color-klartuerkis: #0b8a81;
+  --color-maerzgruen: #add400;
+  --color-melonengelb: #ff9b00;
+  --color-verkehrsrot: #c1121c;
+
+  /* --- LIGHT MODE (Default) --- */
+  --theme-bg: var(--color-translucent);
+  --theme-surface: #ffffff;
+  --theme-text: var(--color-anthrazit);
+  --theme-surface-border: #f4f4f5; /* zinc-100 */
+
+  /* --- DEFAULT BRAND (Melonengelb) --- */
+  --theme-brand: var(--color-melonengelb);
+  --theme-brand-rgb: 255, 155, 0;
+  --theme-brand-hover: #e08800;
+  --theme-brand-glow: #ffaf2e;
+  --theme-brand-text: #ffffff;
+}
+
+/* --- DARK MODE --- */
+.dark {
+  --theme-bg: #0d0f10; /* True near-black page background */
+  --theme-surface: #1a1d1f; /* Near-black surface for cards/panels */
+  --theme-text: #f7f8f9; /* Near-white — high contrast on dark bg */
+  --theme-surface-border: #353b40; /* Visible dark border */
+}
+
+/* --- DARK MODE: Global zinc text overrides ---
+   Hardcoded text-zinc-* classes don't adapt to dark mode on their own.
+   These overrides brighten them all without touching individual components. */
+.dark .text-zinc-950,
+.dark .text-zinc-900,
+.dark .text-zinc-800,
+.dark .text-zinc-700,
+.dark .text-zinc-600 {
+  color: #dce4e9;
+} /* body copy — highly readable */
+.dark .text-zinc-500 {
+  color: #e5ebf0;
+} /* secondary text */
+.dark .text-zinc-400 {
+  color: #eff3f6;
+} /* muted labels */
+.dark .text-zinc-300 {
+  color: #f8fafb;
+} /* very muted */
+
+/* --- BRAND ACCENTS --- */
+[data-brand="klartuerkis"] {
+  --theme-brand: var(--color-klartuerkis);
+  --theme-brand-rgb: 11, 138, 129;
+  --theme-brand-hover: #09726b;
+  --theme-brand-glow: #10a89d;
+  --theme-brand-text: #ffffff;
+}
+
+[data-brand="maerzgruen"] {
+  --theme-brand: var(--color-maerzgruen);
+  --theme-brand-rgb: 173, 212, 0;
+  --theme-brand-hover: #91b300;
+  --theme-brand-glow: #c6f200;
+  --theme-brand-text: var(--color-anthrazit);
+}
+
+[data-brand="verkehrsrot"] {
+  --theme-brand: var(--color-verkehrsrot);
+  --theme-brand-rgb: 193, 18, 28;
+  --theme-brand-hover: #a00f17;
+  --theme-brand-glow: #e61a25;
+  --theme-brand-text: #ffffff;
+}
+
+[data-brand="hellgrau"] {
+  --theme-brand: var(--color-hellgrau);
+  --theme-brand-rgb: 197, 199, 196;
+  --theme-brand-hover: #a3a6a1;
+  --theme-brand-glow: #e5e8e3;
+  --theme-brand-text: var(--color-anthrazit);
+}
+
+[data-brand="anthrazit"] {
+  --theme-brand: var(--color-anthrazit);
+  --theme-brand-rgb: 56, 62, 66;
+  --theme-brand-hover: #212528;
+  --theme-brand-glow: #4c555a;
+  --theme-brand-text: #ffffff;
+}
+
+/* Specific Fix: Anthrazit Brand Visibility in Dark Mode */
+.dark[data-brand="anthrazit"] {
+  --theme-brand: #6a747a; /* Lightened for contrast against bg */
+  --theme-brand-rgb: 106, 116, 122;
+  --theme-brand-hover: #7d878d;
+  --theme-brand-glow: #9ba5ab;
+}
+
+@theme {
+  --color-brand: var(--theme-brand);
+  --color-brand-rgb: var(--theme-brand-rgb);
+  --color-brand-hover: var(--theme-brand-hover);
+  --color-brand-glow: var(--theme-brand-glow);
+  --color-brand-text: var(--theme-brand-text);
+
+  --color-body: var(--theme-bg);
+  --color-surface: var(--theme-surface);
+  --color-content: var(--theme-text);
+  --color-surface-border: var(--theme-surface-border);
+
+  /* Helper colors */
+  --color-anthrazit: var(--color-anthrazit);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand text-brand-text font-bold text-base md:text-lg rounded-full shadow-xl transition-all duration-300 hover:bg-brand-hover hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-surface border-2 border-brand text-brand font-bold text-base md:text-lg rounded-full shadow-sm transition-all duration-300 hover:bg-brand/10 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer;
+  }
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}

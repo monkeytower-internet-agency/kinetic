@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["nodePackages.npm", "nodejs"]
+
+[phases.install]
+cmds = ["npm i"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "node dist/server/entry.mjs"
+
+[variables]
+PORT = "80"
+NODE_ENV = "production"

@@ -1,0 +1,15 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import AboutSection from "../components/AboutSection";
+import { getCollection } from "astro:content";
+
+const sections = await getCollection("sections");
+const about = sections.find((s) => s.id.includes("about"))?.data;
+const pageTitle = `Über mich | ParaNomad`;
+---
+
+<MainLayout title={pageTitle}>
+  <div class="py-12 md:py-20">
+    <AboutSection content={about} client:visible />
+  </div>
+</MainLayout>

@@ -1,0 +1,21 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ShowroomSection from "../components/ShowroomSection";
+import { getCollection } from "astro:content";
+
+const showroomsEntries = await getCollection("showrooms");
+const showrooms = showroomsEntries
+  .map((entry) => ({
+    ...entry.data,
+    name: entry.id,
+  }))
+  .sort((a, b) => b.name.localeCompare(a.name)); // muenchen before geldern
+
+const pageTitle = "Showroom & Standorte | ParaNomad";
+---
+
+<MainLayout title={pageTitle}>
+  <div class="py-12 md:py-20">
+    <ShowroomSection lang="de" showrooms={showrooms} client:visible />
+  </div>
+</MainLayout>

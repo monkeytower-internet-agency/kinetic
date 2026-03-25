@@ -1,0 +1,22 @@
+--> Branch: i18n
+--> Port:   4322
+--> Syncing Marvin Proxy (Caddy)...
+OK: Marvin proxy updated to 4322
+🚀 Starting ParaNomad (i18n) on https://i18n.mac.dev.paranomad.de...
+
+> paranomad@0.0.1 dev
+> astro dev --port 4322 --host
+
+19:35:36 [@astrojs/node] Enabling sessions with filesystem storage
+19:35:36 [types] Generated 1ms
+19:35:36 [content] Syncing content
+19:35:36 [content] Synced content
+
+ astro  v5.17.3 ready in 262 ms
+
+┃ Local    http://localhost:4322/
+┃ Network  http://10.0.0.158:4322/
+           http://100.64.0.5:4322/
+
+19:35:36 watching for file changes...
+19:35:39 [200] HEAD / 91ms

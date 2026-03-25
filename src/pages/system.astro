@@ -1,0 +1,15 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SystemSection from "../components/SystemSection";
+import { getCollection } from "astro:content";
+
+const sections = await getCollection("sections");
+const system = sections.find((s) => s.id.includes("system"))?.data;
+const pageTitle = `${system?.label || "Das System"} | ParaNomad`;
+---
+
+<MainLayout title={pageTitle}>
+  <div class="py-12 md:py-20">
+    <SystemSection content={system} client:visible />
+  </div>
+</MainLayout>

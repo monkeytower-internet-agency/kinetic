@@ -1,0 +1,72 @@
+---
+// src/layouts/MainLayout.astro
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Partners from "../components/Partners";
+import Announcement from "../components/Announcement";
+import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getEntry } from "astro:content";
+
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  showPartners?: boolean;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Fetch Global Settings
+const settings = await getEntry("settings", "index");
+
+const { title = t("footer.tagline"), showPartners = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+    <style is:global>
+      /* Smooth transitions for View Transitions */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 0.5s;
+      }
+
+      @keyframes pulse-subtle {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+      .animate-pulse-subtle {
+        animation: pulse-subtle 3s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-body text-content antialiased overflow-x-hidden transition-colors duration-500"
+  >
+    <Announcement text={settings?.data?.announcement} />
+    <Header lang={lang} client:load />
+
+    <div class="relative">
+      <main>
+        <slot />
+      </main>
+    </div>
+
+    {showPartners && <Partners lang={lang} client:visible />}
+    <Footer lang={lang} client:load />
+  </body>
+</html>
