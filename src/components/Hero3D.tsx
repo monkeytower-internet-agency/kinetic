@@ -89,9 +89,11 @@ const Hero3D: React.FC = () => {
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
 
         <Suspense fallback={null}>
-          <KineticPod />
+          <group position={[0, 0.4, 0]}>
+            <KineticPod />
+          </group>
           <ContactShadows 
-            position={[0, -1.8, 0]} 
+            position={[0, -2.2, 0]} 
             opacity={0.4} 
             scale={10} 
             blur={2.5} 
@@ -99,6 +101,7 @@ const Hero3D: React.FC = () => {
           />
           <Environment preset="city" />
         </Suspense>
+
 
         <OrbitControls 
           enabled={!isBlocked} // Completely disable controls when menu is open

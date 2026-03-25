@@ -146,8 +146,10 @@ const ThemeSwitcher: React.FC = () => {
             fontSize: (14 + lockedMenuSize * 2) + "px",
             lineHeight: "1.5"
           }} 
-                  {/* Dark / Light Mode Toggle */}
+        >
+          {/* Dark / Light Mode Toggle */}
           <div>
+
             <div className="text-[11px] font-bold tracking-tight text-content/40 mb-3 px-1 flex justify-between items-center">
               <span>Darstellung</span>
               <span className="text-content/30 font-normal lowercase tracking-normal">
