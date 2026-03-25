@@ -198,9 +198,10 @@ const ThemeSwitcher: React.FC = () => {
                       <div className="absolute -inset-1 rounded-full border-2 border-brand" />
                     )}
                   </button>
-                  <span className={`text-[9px] font-bold tracking-tight transition-colors ${currentAccent === a.id ? "text-brand" : "text-content/40 group-hover:text-content"}`}>
+                  <span className={`text-[9px] font-bold tracking-tight text-center transition-colors ${currentAccent === a.id ? "text-brand" : "text-content/40 group-hover:text-content"}`}>
                     {a.label}
                   </span>
+
                 </div>
               ))}
             </div>
