@@ -68,11 +68,12 @@ body {
   --color-neptune: #6FB1CD;
 
 
-  /* --- LIGHT MODE (Default) --- */
-  --theme-bg: var(--color-translucent);
-  --theme-surface: #ffffff;
-  --theme-text: var(--color-anthrazit);
-  --theme-surface-border: #f4f4f5; /* zinc-100 */
+  /* --- LIGHT MODE (Max Contrast) --- */
+  --theme-bg: #ffffff;
+  --theme-surface: #f8f9fa;
+  --theme-text: #000000;
+  --theme-surface-border: #d1d5db; /* Gray-300 for visibility */
+
 
   /* --- DEFAULT BRAND (Verkehrsrot) --- */
   --theme-brand: var(--color-verkehrsrot);
@@ -82,13 +83,14 @@ body {
   --theme-brand-text: #ffffff;
 }
 
-/* --- DARK MODE --- */
+/* --- DARK MODE (Max Contrast) --- */
 .dark {
-  --theme-bg: #0d0f10; /* True near-black page background */
-  --theme-surface: #1a1d1f; /* Near-black surface for cards/panels */
-  --theme-text: #f7f8f9; /* Near-white — high contrast on dark bg */
-  --theme-surface-border: #353b40; /* Visible dark border */
+  --theme-bg: #000000; 
+  --theme-surface: #111111; 
+  --theme-text: #ffffff; 
+  --theme-surface-border: #333333; 
 }
+
 
 /* --- DARK MODE: Global zinc text overrides ---
    Hardcoded text-zinc-* classes don't adapt to dark mode on their own.
@@ -216,17 +218,22 @@ body {
 /* --- ACCESSIBILITY: TEXT SCALING --- */
 html.text-size-small { font-size: 14px; }
 html.text-size-base { font-size: 16px; }
-html.text-size-medium { font-size: 18px; }
-html.text-size-large { font-size: 20px; }
-html.text-size-xl { font-size: 24px; }
+html.text-size-medium { font-size: 19px; }
+html.text-size-large { font-size: 22px; font-weight: 500; }
+html.text-size-xl { font-size: 26px; font-weight: 600; }
 
 @media (min-width: 768px) {
   html.text-size-small { font-size: 16px; }
   html.text-size-base { font-size: 18px; }
-  html.text-size-medium { font-size: 20px; }
-  html.text-size-large { font-size: 22px; }
-  html.text-size-xl { font-size: 28px; }
+  html.text-size-medium { font-size: 21px; }
+  html.text-size-large { font-size: 25px; font-weight: 500; }
+  html.text-size-xl { font-size: 30px; font-weight: 600; }
 }
+
+/* Global Weight Injection for body when sized up */
+html.text-size-large body { font-weight: 500; }
+html.text-size-xl body { font-weight: 600; }
+
 
 
 /* Specific Fix: Anthrazit Brand Visibility in Dark Mode */

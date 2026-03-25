@@ -8,8 +8,9 @@ export const colorAccent = atom<ColorAccent>("verkehrsrot");
 
 export const colorMode = atom<ColorMode>("system");
 export const highContrast = atom<boolean>(false);
-export const textSize = atom<number>(1); // 0 = Small, 1 = Default, 2 = Medium, 3 = Large, 4 = Extra Large
+export const textSize = atom<number>(2); // 0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL
 export const isInteractingWithUI = atom<boolean>(false);
+
 
 
 // Computed store to resolve the actual theme (light or dark)
