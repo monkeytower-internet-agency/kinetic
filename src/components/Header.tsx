@@ -86,10 +86,16 @@ const Header: React.FC<HeaderProps> = ({ lang = "de", announcement }) => {
         <div className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto w-full">
           {/* Logo - Dual logo Strategy for SSR transparency */}
           <a 
-            href={prefix || "/"} 
-            onClick={(e) => handleNav(e, prefix || "/")}
+            href="/" 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMenuOpen(false);
+              navigate("/");
+            }}
             className="flex items-center gap-3 group relative z-50"
           >
+
 
             {/* White Logo (Visible in Dark Mode) */}
             <img 
