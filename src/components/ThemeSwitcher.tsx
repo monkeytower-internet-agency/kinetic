@@ -232,7 +232,7 @@ const ThemeSwitcher: React.FC = () => {
               onClick={() => highContrast.set(!isHighContrast)}
               className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
                 isHighContrast 
-                  ? "bg-brand/10 border-brand text-brand ring-1 ring-brand" 
+                  ? "bg-white text-black border-white ring-2 ring-white" 
                   : "bg-body border-surface-border text-content/60 hover:border-brand/40"
               }`}
             >
@@ -241,12 +241,16 @@ const ThemeSwitcher: React.FC = () => {
                 High Contrast
               </div>
               <div 
-                className={`w-8 h-4 rounded-full relative transition-colors ${isHighContrast ? "bg-brand" : "bg-black/20"}`}
-                style={{ backgroundColor: isHighContrast ? 'var(--theme-brand)' : '' }}
+                className={`w-8 h-4 rounded-full relative transition-colors ${
+                  isHighContrast ? "bg-black border border-black" : "bg-black/20"
+                }`}
               >
-                <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-all ${isHighContrast ? "right-0.5 bg-black" : "left-0.5 bg-white"}`} />
+                <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-all ${
+                  isHighContrast ? "right-0.5 bg-white shadow-sm" : "left-0.5 bg-white"
+                }`} />
               </div>
             </button>
+
 
             {/* Text Size Selector - Glider Sizing Icons/Buttons */}
             <div className="space-y-3 bg-body p-3 rounded-xl border border-surface-border">
@@ -257,17 +261,22 @@ const ThemeSwitcher: React.FC = () => {
               </div>
               <div className="grid grid-cols-5 gap-1 bg-surface p-1 rounded-lg">
                 {["XS", "S", "M", "L", "XL"].map((sizeLabel, idx) => (
-                   <button
-                    key={sizeLabel}
-                    onClick={() => textSize.set(idx)}
-                    className={`py-1.5 rounded-md text-[10px] font-black transition-all cursor-pointer ${
-                      currentTextSize === idx
-                        ? "bg-brand text-brand-text shadow-sm scale-110"
-                        : "text-content/60 hover:text-content hover:bg-surface-border"
-                    }`}
-                   >
-                     {sizeLabel}
-                   </button>
+                    <button
+                     key={sizeLabel}
+                     onClick={() => textSize.set(idx)}
+                     className={`py-1.5 rounded-md text-[10px] font-black transition-all cursor-pointer ${
+                       currentTextSize === idx
+                         ? isHighContrast 
+                           ? "bg-white text-black scale-110 shadow-lg" 
+                           : "bg-brand text-brand-text shadow-sm scale-110"
+                         : isHighContrast 
+                           ? "text-white/60 hover:text-white hover:bg-white/20" 
+                           : "text-content/60 hover:text-content hover:bg-surface-border"
+                     }`}
+                    >
+                      {sizeLabel}
+                    </button>
+
                 ))}
               </div>
             </div>
