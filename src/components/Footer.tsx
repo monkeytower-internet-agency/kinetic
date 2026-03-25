@@ -13,11 +13,12 @@ const Footer: React.FC<Props> = ({ lang = "de" }) => {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         <div className="mb-10">
           <img 
-            src="/assets/logo-kinetic-white.png" 
-            alt="KINETIC" 
-            className="h-6 w-auto opacity-80"
+            src="/assets/profly-logo-art.png" 
+            alt="ProFly - The Art of Paragliding" 
+            className="h-16 w-auto opacity-90"
           />
         </div>
+
         <div className="flex gap-8 text-xs font-medium text-content/60 mb-8 uppercase tracking-widest">
           <a
             href="/datenschutz"
