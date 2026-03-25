@@ -230,24 +230,49 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
            <p class="text-xl text-content/60 font-light">{media?.subheading}</p>
         </div>
          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 pt-10">
-            {[1, 2, 3, 4].map(i => (
-              <div class="relative group cursor-pointer">
-                 <div class="absolute inset-0 bg-brand/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                 <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative z-10 shadow-2xl transition-transform duration-500 group-hover:-translate-y-4">
-                    <div class="absolute inset-0 flex items-center justify-center z-20">
-                       <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <div class="w-0 h-0 border-l-[12px] border-l-white border-y-[8px] border-y-transparent ml-1"></div>
-                       </div>
-                    </div>
-                    <img src={`/assets/4.jpg`} alt={`Clip ${i}`} class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" />
-                 </div>
-              </div>
-            ))}
+            {media && media.media_items && media.media_items.length > 0 ? (
+              media.media_items.map((item: any) => (
+                <div class="relative group cursor-pointer">
+                   <div class="absolute inset-0 bg-brand/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                   <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative z-10 shadow-2xl transition-transform duration-500 group-hover:-translate-y-4">
+
+                      {item.video_url && (
+
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                          <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                             <div class="w-0 h-0 border-l-[12px] border-l-white border-y-[8px] border-y-transparent ml-1"></div>
+                          </div>
+                        </div>
+                      )}
+                      <img 
+                        src={item.thumbnail || "/assets/4.jpg"} 
+                        alt={item.label || "Clip"} 
+                        class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" 
+                      />
+                   </div>
+                   {item.label && <p class="text-[10px] tracking-widest uppercase font-bold text-content/40 mt-4 group-hover:text-brand transition-colors">{item.label}</p>}
+                </div>
+              ))
+            ) : (
+              [1, 2, 3, 4].map(i => (
+                <div class="relative group cursor-pointer">
+                   <div class="absolute inset-0 bg-brand/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                   <div class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative z-10 shadow-2xl transition-transform duration-500 group-hover:-translate-y-4">
+                      <div class="absolute inset-0 flex items-center justify-center z-20">
+                         <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div class="w-0 h-0 border-l-[12px] border-l-white border-y-[8px] border-y-transparent ml-1"></div>
+                         </div>
+                      </div>
+                      <img src={`/assets/4.jpg`} alt={`Clip ${i}`} class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" />
+                   </div>
+                </div>
+              ))
+            )}
          </div>
          <p class="text-white/20 text-sm italic pt-10">{media?.content}</p>
-
      </div>
   </section>
+
 
   {/* TECHNICAL SPECS */}
   <section id="specs-table" class="py-24 md:py-40 bg-zinc-900 text-white">

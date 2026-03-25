@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Logo Visibility Logic (Bypasses Tailwind dark: to react to manual .dark class toggle) */
+.logo-white { display: none !important; }
+.logo-black { display: block !important; }
+
+html.dark .logo-white { display: block !important; }
+html.dark .logo-black { display: none !important; }
+
+
 /* inter-300 - latin */
 @font-face {
   font-display: swap;

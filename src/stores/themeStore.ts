@@ -19,5 +19,5 @@ export const $theme = computed(colorMode, (mode) => {
   if (typeof window !== "undefined") {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
-  return "light"; // Default for SSR
+  return "dark"; // Default for SSR (matches initial .dark class)
 });

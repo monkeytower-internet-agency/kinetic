@@ -3,6 +3,8 @@ import { Menu, X } from "lucide-react";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 import { useTranslations, type Language } from "../i18n/utils";
+import { useStore } from "@nanostores/react";
+import { $theme } from "../stores/themeStore";
 
 const getNavItems = (t: any, lang: Language) => {
   return [
@@ -18,10 +20,13 @@ const getNavItems = (t: any, lang: Language) => {
 
 interface HeaderProps {
   lang?: Language;
+  announcement?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ lang = "de" }) => {
+const Header: React.FC<HeaderProps> = ({ lang = "de", announcement }) => {
   const t = useTranslations(lang);
+  const theme = useStore($theme);
+  
   const prefix = lang === "de" ? "" : `/${lang}`;
   const contactHref = `${prefix}/kontakt`;
   const navItems = getNavItems(t, lang);
@@ -52,20 +57,38 @@ const Header: React.FC<HeaderProps> = ({ lang = "de" }) => {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-surface/80 backdrop-blur-xl shadow-[0_1px_20px_rgba(0,0,0,0.06)] border-b border-surface-border"
-            : "bg-surface/40 backdrop-blur-md"
+            ? "bg-surface/70 backdrop-blur-3xl shadow-2xl border-b border-surface-border"
+            : "bg-surface/30 backdrop-blur-2xl"
         }`}
       >
+        {announcement && announcement.trim() !== "" && (
+          <div className="bg-brand py-2 px-4 text-center border-b border-white/5">
+            <p className="text-white text-[10px] font-bold uppercase tracking-[0.2em] animate-pulse-subtle">
+              {announcement}
+            </p>
+          </div>
+        )}
+
+
         <div className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto w-full">
-          {/* Logo */}
+          {/* Logo - Dual logo Strategy for SSR transparency */}
           <a href="/" className="flex items-center gap-3 group relative z-50">
+            {/* White Logo (Visible in Dark Mode) */}
             <img 
-              src="/assets/logo-kinetic-white.png" 
+              src="/assets/logo-kinetic-white.png"
               alt="KINETIC Logo" 
-              className="h-8 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+              className="logo-white h-8 md:h-10 w-auto object-contain transition-all duration-500 group-hover:scale-105"
             />
+            {/* Black Logo (Visible in Light Mode) */}
+            <img 
+              src="/assets/logo-kinetic-alles-black.png"
+              alt="KINETIC Logo" 
+              className="logo-black h-8 md:h-10 w-auto object-contain transition-all duration-500 group-hover:scale-105"
+            />
+
+
           </a>
 
           {/* Desktop Nav */}

@@ -1,6 +1,8 @@
 ---
 // src/layouts/MainLayout.astro
 import Header from "../components/Header";
+import CursorGlow from "../components/CursorGlow";
+
 import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
 import { ClientRouter } from "astro:transitions";
@@ -53,11 +55,14 @@ const { title = t("footer.tagline") } = Astro.props;
       }
     </style>
   </head>
+
   <body
     class="bg-body text-content antialiased overflow-x-hidden transition-colors duration-500"
   >
-    <Announcement text={settings?.data?.announcement} />
-    <Header lang={lang} client:load />
+    <Header lang={lang} announcement={settings?.data?.announcement} client:load />
+    <CursorGlow client:load />
+
+
 
     <div class="relative">
       <main>

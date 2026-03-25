@@ -9,13 +9,24 @@ function KineticPod() {
   const meshRef = useRef<THREE.Group>(null);
   const isBlocked = useStore(isInteractingWithUI);
 
-  // Gentle auto-rotation
+  // Scroll-based rotation & tilt
   useFrame((state) => {
-    // Only auto-rotate if menu is closed
     if (meshRef.current && !isBlocked) {
+      // Base auto-rotation
       meshRef.current.rotation.y += 0.003;
+      
+      // Reactive scroll rotation (Slow turn as you scroll)
+      const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+      const targetScrollRot = (scrollY * 0.005);
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetScrollRot, 0.05);
+
+      // Reactive scroll tilt (Banking effect)
+      const targetTilt = (scrollY * 0.002);
+      meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, -targetTilt, 0.05);
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetTilt * 0.5, 0.05);
     }
   });
+
 
   return (
     <group ref={meshRef}>

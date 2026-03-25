@@ -22,6 +22,13 @@ const sectionsCollection = defineCollection({
       result: z.string(),
     }).optional(),
     image: z.string().optional(),
+    thumbnail: z.string().optional(),
+    media_items: z.array(z.object({
+      label: z.string().optional(),
+      video_url: z.string().optional(),
+      thumbnail: z.string().optional(),
+    })).optional(),
+
     // Legacy fields
     subtitle: z.string().optional(),
     label: z.string().optional(),

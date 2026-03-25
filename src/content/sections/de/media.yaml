@@ -1,6 +1,20 @@
 slug: de/media
-type: text
+type: media
 title: Media Section
 heading: "KINETIC in action"
 subheading: "Komfort, Präzision, Sicherheit"
 content: "Erlebe KINETIC in Bewegung. Kurze Clips zeigen dir die Startphase, die Sitzposition, Speedbar-Nutzung und das Verhalten in Turbulenzen."
+media_items:
+  - label: "Startphase"
+    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    thumbnail: "/assets/4.jpg"
+  - label: "In der Thermik"
+    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    thumbnail: "/assets/4.jpg"
+  - label: "Sitzposition & Speedbar"
+    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    thumbnail: "/assets/4.jpg"
+  - label: "Landung"
+    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    thumbnail: "/assets/4.jpg"
+
