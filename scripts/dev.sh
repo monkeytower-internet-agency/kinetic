@@ -3,9 +3,9 @@
 
 # 1. Config
 PORT_REGISTRY=".local-ports"
-BASE_PORT=4321
-DOMAIN="paranomad.de"
-PROJECT="ParaNomad"
+BASE_PORT=4330
+DOMAIN="kinetic.dalm.de"
+PROJECT="KINETIC"
 
 # 2. Get Context
 BRANCH=$(git rev-parse --abbrev-ref HEAD)

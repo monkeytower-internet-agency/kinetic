@@ -5,13 +5,13 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { useTranslations, type Language } from "../i18n/utils";
 
 const getNavItems = (t: any, lang: Language) => {
-  const prefix = lang === "de" ? "" : `/${lang}`;
   return [
-    { label: t("nav.system"), href: `${prefix}/system` },
-    { label: t("nav.benefits"), href: `${prefix}/vorteile` },
-    { label: t("nav.showroom"), href: `${prefix}/showroom` },
-    { label: t("nav.about"), href: `${prefix}/ueber-mich` },
-    { label: t("nav.quiz"), href: `${prefix}/quiz` },
+    { label: t("nav.specs"), href: "#specs" },
+    { label: t("nav.features"), href: "#features" },
+    { label: t("nav.sizing"), href: "#sizing" },
+    { label: t("nav.safety"), href: "#safety" },
+    { label: t("nav.media"), href: "#media" },
+    { label: t("nav.faq"), href: "#faq" },
   ];
 };
 
@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ lang = "de" }) => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group relative z-50">
             <span className="text-xl font-bold tracking-tighter text-content group-hover:text-brand transition-colors">
-              Para<span className="text-brand">Nomad</span>
+              KINE<span className="text-brand">TIC</span>
             </span>
           </a>
 

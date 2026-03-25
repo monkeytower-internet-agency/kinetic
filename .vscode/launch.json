@@ -2,73 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "paraNOMAD: Start Branch (main)",
+      "name": "KINETIC: Start Dev Server",
       "request": "launch",
       "type": "node-terminal",
-      "command": "npm run dev -- --port 4321 --host",
+      "command": "./scripts/dev.sh",
       "cwd": "${workspaceFolder}"
     },
     {
-      "name": "paraNOMAD: Debug main in Chrome",
+      "name": "KINETIC: Debug in Chrome",
       "type": "chrome",
       "request": "launch",
-      "url": "https://mac.dev.paranomad.de",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Start Branch (i18n)",
-      "request": "launch",
-      "type": "node-terminal",
-      "command": "npm run dev -- --port 4322 --host",
-      "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Debug i18n in Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "url": "https://i18n.mac.dev.paranomad.de",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Start Branch (theme-switcher)",
-      "request": "launch",
-      "type": "node-terminal",
-      "command": "npm run dev -- --port 4323 --host",
-      "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Debug theme-switcher in Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "url": "https://theme-switcher.mac.dev.paranomad.de",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Start Branch (verify-setup)",
-      "request": "launch",
-      "type": "node-terminal",
-      "command": "npm run dev -- --port 4324 --host",
-      "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Debug verify-setup in Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "url": "https://verify-setup.mac.dev.paranomad.de",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Start Branch (pricing)",
-      "request": "launch",
-      "type": "node-terminal",
-      "command": "npm run dev -- --port 4327 --host",
-      "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "paraNOMAD: Debug pricing in Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "url": "https://pricing.mac.dev.paranomad.de",
+      "url": "https://mac.dev.kinetic.dalm.de",
       "webRoot": "${workspaceFolder}"
     }
   ]

@@ -1,106 +1,184 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import HeroSlider from "../components/HeroSlider";
-import QuizWizard from "../components/QuizWizard";
-import FlipCardGrid from "../components/FlipCardGrid";
-import SystemSection from "../components/SystemSection";
-import RotatingHeadline from "../components/RotatingHeadline";
-import ContactForm from "../components/ContactForm";
-import ContactCard from "../components/ContactCard";
-import AboutSection from "../components/AboutSection";
-import ShowroomSection from "../components/ShowroomSection";
+import { getCollection } from "astro:content";
 
-import { getEntry, getCollection } from "astro:content";
-
-// 1. Fetch Page Content
 const allSections = await getCollection("sections");
-const hero = allSections.find((s) => s.id.includes("hero"))?.data;
-const system = allSections.find((s) => s.id.includes("system"))?.data;
-const vorteile = allSections.find((s) => s.id.includes("vorteile"))?.data;
-const about = allSections.find((s) => s.id.includes("about"))?.data;
+const hero = allSections.find(s => s.id.endsWith('hero'))?.data;
+const intro = allSections.find(s => s.id.endsWith('intro'))?.data;
+const cls = allSections.find(s => s.id.endsWith('cls'))?.data;
+const agility = allSections.find(s => s.id.endsWith('agility-control'))?.data;
+const story = allSections.find(s => s.id.endsWith('story-tired'))?.data;
+const fit = allSections.find(s => s.id.endsWith('fit-system'))?.data;
+const faq = allSections.find(s => s.id.endsWith('faq'))?.data;
 
-const showroomEntries = await getCollection("showrooms");
-const showrooms = showroomEntries
-  .map((entry) => ({
-    ...entry.data,
-    name: entry.id,
-  }))
-  .sort((a, b) => b.name.localeCompare(a.name)); // muenchen (M) before geldern (G)
-
-const turnstileSiteKey =
-  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ||
-  process.env.PUBLIC_TURNSTILE_SITE_KEY ||
-  "";
-
-// Dynamic page title
-const BASE_TITLE = hero?.title || "ParaNomad modular van build";
-const branch = process.env.SITE_BRANCH || "";
-const isMain = !branch || branch === "main";
-const isDev = import.meta.env.DEV;
-const branchPrefix = isMain ? "" : `${branch} `;
-const envPrefix = isDev ? "mac " : "";
-const pageTitle = `${envPrefix}${branchPrefix}${BASE_TITLE}`;
+// Brand Title
+const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 ---
 
 <MainLayout title={pageTitle}>
-  <main class="pt-2 md:pt-8 pb-8">
-    {/* Hero Text Section (Contained) */}
-    <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="text-center space-y-6 mx-auto px-4 z-10 relative">
-        <RotatingHeadline client:load />
-        <p
-          class="text-base md:text-lg text-content/70 max-w-4xl mx-auto leading-relaxed font-light"
-          set:html={hero?.subtitle ||
-            "Modularer Camper-Ausbau. Kein Wertverlust, kein Werkzeug, 100% Alltagstauglichkeit."}
-        />
-
-        <div
-          class="pt-4 md:pt-8 flex flex-nowrap justify-center items-center gap-2 md:gap-4 px-2 w-full"
-        >
-          <a
-            href="/system"
-            class="flex-1 min-w-0 text-center border-2 border-brand text-brand font-bold rounded-2xl px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 whitespace-nowrap"
-          >
-            {hero?.cta_primary || "Was ist das?"}
-          </a>
-          <a
-            href="/quiz"
-            class="flex-1 min-w-0 text-center bg-brand text-white rounded-2xl font-bold px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand-hover hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand/20 transition-all duration-300 whitespace-nowrap"
-          >
-            {hero?.cta_secondary || "Projekt-Check"}
-          </a>
-          <a
-            href="/showroom"
-            class="flex-1 min-w-0 text-center border-2 border-brand text-brand font-bold rounded-2xl px-2 py-2.5 text-xs md:px-8 md:py-4 md:text-lg hover:bg-brand/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 whitespace-nowrap"
-          >
-            {hero?.cta_tertiary || "Live erleben"}
-          </a>
-        </div>
+  {/* HERO SECTION */}
+  <section id="hero" class="min-h-[90vh] flex flex-col items-center justify-center text-center px-4 pt-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent pointer-events-none"></div>
+    <div class="relative z-10 space-y-8 max-w-5xl mx-auto">
+      <h1 class="text-7xl md:text-9xl font-black tracking-tighter text-content animate-in fade-in slide-in-from-bottom-10 duration-1000">
+        {hero?.heading || "KINETIC"}
+      </h1>
+      <p class="text-xl md:text-3xl font-medium tracking-widest text-brand uppercase animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-200">
+        - pure control -
+      </p>
+      <p class="text-lg md:text-xl text-content/60 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in duration-1000 delay-500">
+        das neue Gurtzeug von Profly.
+      </p>
+      <div class="pt-10 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-700">
+        <a href="#kontakt" class="btn-primary min-w-[280px]">
+          {hero?.button_text || "Beratung anfragen / Early Access"}
+        </a>
       </div>
     </div>
+  </section>
 
-    <div class="max-w-7xl mx-auto px-12 md:px-8 mt-6 md:mt-10">
-      <HeroSlider client:visible />
+  {/* INTRO: Warum es im Sitz beginnt */}
+  <section id="features" class="py-24 md:py-40 bg-surface/30">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-widest uppercase">
+          Das Sitzprinzip
+        </span>
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-content leading-tight">
+          {intro?.heading || "Warum es im Sitz beginnt"}
+        </h2>
+        <div class="prose prose-invert prose-lg text-content/70 leading-relaxed font-light">
+          {intro?.content || "Viele glauben, Kontrolle entsteht über die Hände..."}
+        </div>
+      </div>
+      <div class="aspect-square bg-zinc-800 rounded-3xl overflow-hidden shadow-2xl border border-white/5 relative group">
+         <div class="absolute inset-0 bg-gradient-to-br from-brand/20 to-transparent"></div>
+         <div class="absolute inset-0 flex items-center justify-center font-bold text-white/20 italic">
+            [Product Image Kinetic]
+         </div>
+      </div>
     </div>
+  </section>
 
-    {/* Funny YouTube Outro */}
-    <div class="py-24 px-4 bg-body text-center">
-      <div class="max-w-4xl mx-auto space-y-4">
-        <h3 class="text-xl md:text-2xl font-bold text-content tracking-tight">
-          Danke für's Zuschauen!
-        </h3>
-        <p class="text-content/70 text-lg font-light italic">
-          "Wenn's Dir gefallen hat, lass ein Abo da und aktiviere die Glocke!
-          😉"
+  {/* STORY SECTION */}
+  <section class="py-24 bg-brand/5 border-y border-brand/10">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+      <span class="text-xs font-bold tracking-[0.3em] uppercase text-content/40">Kundenstory</span>
+      <blockquote class="text-3xl md:text-5xl font-light italic text-content leading-snug">
+        "{story?.heading || "Endlich keine Müdigkeit mehr im Körper."}"
+      </blockquote>
+      <p class="text-lg md:text-xl text-content/60 leading-relaxed max-w-2xl mx-auto font-light">
+        {story?.content}
+      </p>
+      <p class="text-xl font-bold text-brand italic">
+        {story?.subheading}
+      </p>
+    </div>
+  </section>
+
+  {/* TECH: CLS & CORE LOCK */}
+  <section id="specs" class="py-24 md:py-40">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20 space-y-6">
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tight">
+          {cls?.heading || "CORE LOCK SYSTEM (TM)"}
+        </h2>
+        <p class="text-xl text-content/60 font-light">
+          {cls?.content}
         </p>
-        <div class="pt-4">
-          <span
-            class="text-[10px] text-content/40 uppercase tracking-[0.3em] font-bold"
-          >
-            (Oder schreib mir einfach eine Mail)
-          </span>
-        </div>
+        <p class="text-2xl font-bold text-brand tracking-widest uppercase py-4">
+          {cls?.subheading}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+         {[
+           { title: "LONG-FLIGHT SUPPORT", desc: "Sitzbrett mit voller Oberschenkelstütze. Weil Sitzkomfort Leistung ist." },
+           { title: "BALANCE-LOCK", desc: "Pilotengewicht im Schwerpunkt — kein Rutschen, klare Rückmeldung." },
+           { title: "CLS", desc: "Körpergerechte Passform und Lastpfade als Einheit im Schwerpunkt." }
+         ].map(feature => (
+           <div class="p-10 rounded-3xl bg-surface/50 border border-white/5 space-y-6 hover:border-brand/40 transition-all duration-300">
+              <h3 class="text-xl font-bold text-brand">{feature.title}</h3>
+              <p class="text-content/60 font-light leading-relaxed">{feature.desc}</p>
+           </div>
+         ))}
       </div>
     </div>
-  </main>
+  </section>
+
+  {/* AGILITY CONTROL */}
+  <section class="py-24 bg-zinc-900 overflow-hidden relative">
+     <div class="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-20 items-center">
+        <div class="relative z-10 space-y-8">
+           <h2 class="text-4xl md:text-6xl font-bold tracking-tight">
+             {agility?.heading || "AGILITY CONTROL™"}
+           </h2>
+           <p class="text-xl text-content/70 font-light leading-relaxed">
+             {agility?.content}
+           </p>
+           <div class="p-6 bg-brand/10 border-l-4 border-brand rounded-r-2xl italic text-content/90 font-medium">
+             "{agility?.subheading}"
+           </div>
+        </div>
+        <div class="aspect-video bg-zinc-800 rounded-3xl shadow-2xl flex items-center justify-center font-bold text-white/5 relative">
+            [Feature Illustration Agility Control]
+            <div class="absolute bottom-6 left-6 right-6 flex justify-between text-[10px] tracking-widest font-bold uppercase text-white/40">
+               <span>Dämpfung Max</span>
+               <span>Feedback Max</span>
+            </div>
+        </div>
+     </div>
+  </section>
+
+  {/* FIT SYSTEM */}
+  <section id="sizing" class="py-24 md:py-40 bg-surface/30">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+      <h2 class="text-4xl md:text-6xl font-bold tracking-tight">{fit?.heading}</h2>
+      <p class="text-xl text-content/60 font-light">{fit?.content}</p>
+      
+      <div class="grid grid-cols-3 gap-4 pt-10">
+         {fit?.items?.map(item => (
+            <div class="p-8 bg-surface rounded-2xl border border-white/5 space-y-2">
+               <span class="text-4xl font-black text-brand">{item.value}</span>
+               <span class="block text-xs uppercase tracking-widest text-content/40 font-bold">{item.label}</span>
+            </div>
+         ))}
+      </div>
+      <div class="pt-10">
+         <a href="#kontakt" class="btn-outline">
+            {fit?.button_text}
+         </a>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section id="faq" class="py-24 md:py-40 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6 space-y-16">
+      <h2 class="text-4xl font-bold text-center">{faq?.heading}</h2>
+      <div class="space-y-4">
+        {faq?.items?.map(item => (
+          <div class="p-8 rounded-2xl bg-surface/50 border border-white/5 hover:border-brand/20 transition-all active:scale-[0.99] cursor-pointer group">
+            <h3 class="text-xl font-bold group-hover:text-brand transition-colors mb-4">{item.label}</h3>
+            <p class="text-content/60 font-light leading-relaxed">{item.value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CONTACT */}
+  <section id="kontakt" class="py-24 md:py-40 bg-brand text-white">
+     <div class="max-w-5xl mx-auto px-6 text-center space-y-10">
+        <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic">Stay in Control.</h2>
+        <p class="text-xl md:text-2xl font-light opacity-80 max-w-2xl mx-auto">
+          Interessiert am KINETIC? Hinterlasse uns deine Nachricht für Updates zum Launch oder eine persönliche Beratung.
+        </p>
+        <div class="pt-10">
+           <a href="mailto:info@profly.org" class="inline-flex px-12 py-6 bg-white text-brand font-black text-xl rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">
+              Nimm Kontakt auf
+           </a>
+        </div>
+     </div>
+  </section>
 </MainLayout>

@@ -1,0 +1,63 @@
+slug: de/hero
+type: hero
+title: Hero Section
+heading: KINETIC
+subheading: "- pure control - \ndas neue Gurtzeug von Profly"
+button_text: "Beratung anfragen / Early Access"
+button_link: "#kontakt"
+---
+slug: de/intro
+type: text
+title: Intro Section
+heading: "Warum es im Sitz beginnt"
+content: "Viele glauben, Kontrolle entsteht über die Hände. Über Bremsen. Über Technik. Aber die Wahrheit ist: Kontrolle beginnt viel früher. Sie beginnt dort, wo dein Körper sitzt."
+---
+slug: de/story-tired
+type: story
+title: Kundenstory Fatigue
+heading: "Endlich keine Müdigkeit mehr im Körper."
+content: "Ich bin nicht der Pilot, der nach 1 Stunde wieder landet. Ich liebe Strecke. Aber ich kenne dieses schleichende Ziehen im Oberschenkel, dieses Umsetzen, dieses „noch mal anders hinsetzen“. Und irgendwann wird aus Konzentration einfach nur noch Durchhalten. Beim ersten Flug mit KINETIC ist es mir erst nach der Landung aufgefallen: Ich war nicht kaputt."
+subheading: "Das war der Moment, wo ich wusste: Das ist mein Gurtzeug."
+---
+slug: de/cls-system
+type: feature
+title: CLS System
+heading: "Wir nennen das CLS – CORE LOCK SYSTEM (TM)"
+content: "CLS ist kein Feature. CLS ist das Sitzprinzip hinter KINETIC: Du sitzt stabil im Schwerpunkt – durch Geometrie und Lastpfade. Du sitzt richtig, ohne darüber nachzudenken. Oder nachzurutschen. Dein Gewicht ist dort, wo es wirken soll. Das ist der Moment, in dem PURE CONTROL entsteht."
+subheading: "FLY FEWER CORRECTIONS. FEEL MORE."
+---
+slug: de/agility-control
+type: feature
+title: Agility Control
+heading: "AGILITY CONTROL™ (ABS im Flug einstellbar)"
+content: "Du willst das System direkt und crisp? Stell es direkter. Es wird turbulent oder du willst mehr Ruhe? Stell es gedämpfter. Das ist keine Spielerei. Das ist genau die Freiheit, die du im echten Fliegerleben brauchst."
+subheading: "PURE CONTROL bedeutet: Du bestimmst die Charakteristik — nicht die Bedingungen."
+---
+slug: de/fit-system
+type: grid
+title: 3x3 Perfect Fit
+heading: "Unser 3x3 PERFECT FIT System"
+content: "Einer der größten Gründe, warum Liegegurtzeuge manchmal „nicht passen“: Beine und Oberkörper sind nicht gleich proportioniert. Deshalb kommt KINETIC mit 9 Kombinationen."
+items:
+  - label: "Beinlängen"
+    value: "3"
+  - label: "Oberkörperlängen"
+    value: "3"
+  - label: "Kombinationen"
+    value: "9"
+button_text: "Lass dich zu deiner perfekten Größe beraten"
+button_link: "#kontakt"
+---
+slug: de/faq
+type: faq
+title: FAQ Section
+heading: "Häufige Fragen (FAQ)"
+items:
+  - label: "Für wen ist KINETIC gemacht?"
+    value: "Für Piloten, die Performance wollen, aber keinen Stress. Für lange Flüge, Thermik, anspruchsvolle Bedingungen und präzises Handling."
+  - label: "Direkt vs. Gedämpft – wann stelle ich was ein?"
+    value: "Mit AGILITY CONTROL kannst du im Flug zwischen direktem Feedback und gedämpfter Stabilität wählen — je nach Luft und Vorliebe."
+  - label: "Warum ist Schwerpunkt so wichtig?"
+    value: "Weil die beste Rückmeldung und die geringste Korrektur dort entstehen, wo Gewicht und Geometrie zusammenpassen."
+  - label: "Wie finde ich die richtige Größe?"
+    value: "Mit Beratung. KINETIC entfaltet PURE CONTROL erst dann vollständig, wenn Sitzposition, Rückenlänge und Setup passen."
