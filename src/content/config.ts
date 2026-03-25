@@ -1,9 +1,28 @@
 import { defineCollection, z } from "astro:content";
 
 const sectionsCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: z.object({
+    slug: z.string().optional(),
+    type: z.string().optional(),
     title: z.string().optional(),
+    heading: z.string().optional(),
+    subheading: z.string().optional(),
+    content: z.string().optional(),
+    button_text: z.string().optional(),
+    button_link: z.string().optional(),
+    items: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+      icon: z.string().optional(),
+    })).optional(),
+    fit_grid: z.object({
+      rows: z.string(),
+      cols: z.string(),
+      result: z.string(),
+    }).optional(),
+    image: z.string().optional(),
+    // Legacy fields
     subtitle: z.string().optional(),
     label: z.string().optional(),
     headline: z.string().optional(),
@@ -22,21 +41,6 @@ const sectionsCollection = defineCollection({
       backText: z.string(),
     })).optional(),
     mobile_click_label: z.string().optional(),
-    // About Section
-    job_title: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    story_1: z.array(z.string()).optional(),
-    quote: z.string().optional(),
-    list_label: z.string().optional(),
-    list_items: z.array(z.string()).optional(),
-    story_2: z.array(z.string()).optional(),
-    badges: z.array(z.object({
-      label: z.string(),
-      sub: z.string(),
-    })).optional(),
-    cta_primary: z.string().optional(),
-    cta_secondary: z.string().optional(),
-    cta_tertiary: z.string().optional(),
   }),
 });
 
@@ -64,7 +68,6 @@ const showroomsCollection = defineCollection({
     contact_url: z.string().optional(),
   }),
 });
-
 
 export const collections = {
   sections: sectionsCollection,

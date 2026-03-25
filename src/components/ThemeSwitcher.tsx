@@ -28,9 +28,9 @@ const ThemeSwitcher: React.FC = () => {
   useEffect(() => {
     // Load from localStorage on mount
     const savedAccent = localStorage.getItem(
-      "boxxtool-accent",
+      "theme-accent",
     ) as ColorAccent | null;
-    const savedMode = localStorage.getItem("boxxtool-mode") as ColorMode | null;
+    const savedMode = localStorage.getItem("theme-mode") as ColorMode | null;
 
     if (savedAccent && accents.some((a) => a.id === savedAccent)) {
       colorAccent.set(savedAccent);
@@ -42,8 +42,8 @@ const ThemeSwitcher: React.FC = () => {
 
   useEffect(() => {
     // Apply changes to DOM
-    localStorage.setItem("boxxtool-accent", currentAccent);
-    localStorage.setItem("boxxtool-mode", currentMode);
+    localStorage.setItem("theme-accent", currentAccent);
+    localStorage.setItem("theme-mode", currentMode);
 
     document.documentElement.setAttribute("data-brand", currentAccent);
 
@@ -135,7 +135,7 @@ const ThemeSwitcher: React.FC = () => {
           {/* Accent Color Selection */}
           <div className="pt-2 border-t border-surface-border">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-4 px-1">
-              Boxxtool Farbe
+              Markenfarbe
             </div>
             <div className="grid grid-cols-6 gap-3">
               {accents.map((a) => (

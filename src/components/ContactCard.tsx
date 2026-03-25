@@ -11,10 +11,10 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang = "de" }) => {
   const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Olaf Klein
-ORG:ParaNomad
+ORG:ProFly
 TEL;TYPE=CELL:+491772688999
-EMAIL:info@paranomad.de
-URL:https://paranomad.de
+EMAIL:info@profly.org
+URL:https://profly.org
 END:VCARD`;
 
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(vcard)}`;
@@ -55,14 +55,14 @@ END:VCARD`;
           </span>
         </a>
         <a
-          href="mailto:info@paranomad.de"
+          href="mailto:info@profly.org"
           className="flex items-center gap-3 p-3 rounded-xl hover:bg-body transition-colors group"
         >
           <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center text-brand group-hover:scale-110 transition-transform">
             <Mail className="w-4 h-4" />
           </div>
           <span className="text-sm font-medium text-content/70">
-            info@paranomad.de
+            info@profly.org
           </span>
         </a>
         <div className="flex items-center gap-3 p-3 rounded-xl">
@@ -70,7 +70,7 @@ END:VCARD`;
             <Globe className="w-4 h-4" />
           </div>
           <span className="text-sm font-medium text-content/70">
-            paranomad.de
+            profly.org
           </span>
         </div>
       </div>

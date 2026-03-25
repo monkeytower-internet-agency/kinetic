@@ -1,6 +1,13 @@
 slug: de/cls
-type: feature
-title: CLS System
+type: features
+title: Core Lock System
 heading: "Wir nennen das CLS – CORE LOCK SYSTEM (TM)"
-content: "CLS ist kein Feature. CLS ist das Sitzprinzip hinter KINETIC: Du sitzt stabil im Schwerpunkt – durch Geometrie und Lastpfade. Du sitzt richtig, ohne darüber nachzudenken. Oder nachzurutschen. Dein Gewicht ist dort, wo es wirken soll. Das ist der Moment, in dem PURE CONTROL entsteht."
-subheading: "FLY FEWER CORRECTIONS. FEEL MORE."
+content: "CLS ist kein Feature. CLS ist das Sitzprinzip hinter KINETIC: Du sitzt stabil im Schwerpunkt – durch Geometrie und Lastpfade. Du sitzt richtig, ohne darüber nachzudenken. Oder nachzurutschen. Dein Gewicht ist dort, wo es wirken soll."
+subheading: "Das ist der Moment, in dem PURE CONTROL entsteht."
+items:
+  - label: "LONG-FLIGHT SUPPORT"
+    value: "Sitzbrett mit voller Oberschenkelstütze. Weil der Sitzkomfort die Leistung stärker beeinflusst, als du denkst."
+  - label: "BALANCE-LOCK"
+    value: "Körpergerechte Passform & Schwerpunkt. Du rutschst nicht vor und zurück – du bleibst dort, wo Kontrolle entsteht."
+  - label: "CORE LOCK"
+    value: "Das System sorgt dafür, dass du im Sitz bleibst – auch wenn alle Verschlüsse offen sind."

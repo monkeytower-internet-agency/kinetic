@@ -3,7 +3,7 @@ import { atom, computed } from 'nanostores';
 export type ColorAccent = "melonengelb" | "klartuerkis" | "maerzgruen" | "verkehrsrot" | "hellgrau" | "anthrazit";
 export type ColorMode = "light" | "dark" | "system";
 
-export const colorAccent = atom<ColorAccent>("melonengelb");
+export const colorAccent = atom<ColorAccent>("verkehrsrot");
 export const colorMode = atom<ColorMode>("system");
 
 // Computed store to resolve the actual theme (light or dark)

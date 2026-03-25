@@ -1,9 +1,7 @@
 ---
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import "../styles/global.css";
+import MainLayout from "../layouts/MainLayout.astro";
 
-const BASE_TITLE = "ParaNomad modular van build";
+const BASE_TITLE = "KINETIC - pure control";
 const branch = process.env.SITE_BRANCH || "";
 const isMain = !branch || branch === "main";
 const isDev = import.meta.env.DEV;
@@ -12,324 +10,71 @@ const envPrefix = isDev ? "mac " : "";
 const pageTitle = `${envPrefix}${branchPrefix}Datenschutz | ${BASE_TITLE}`;
 ---
 
-<html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <style>
-      /* inter-300 - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 300;
-        src: url("/fonts/inter-v20-latin-300.woff2") format("woff2");
-      }
-      /* inter-regular - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        src: url("/fonts/inter-v20-latin-regular.woff2") format("woff2");
-      }
-      /* inter-500 - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 500;
-        src: url("/fonts/inter-v20-latin-500.woff2") format("woff2");
-      }
-      /* inter-700 - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 700;
-        src: url("/fonts/inter-v20-latin-700.woff2") format("woff2");
-      }
-      /* inter-800 - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 800;
-        src: url("/fonts/inter-v20-latin-800.woff2") format("woff2");
-      }
-      /* inter-900 - latin */
-      @font-face {
-        font-display: swap;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 900;
-        src: url("/fonts/inter-v20-latin-900.woff2") format("woff2");
-      }
-      body {
-        font-family: "Inter", sans-serif;
-      }
-    </style>
-  </head>
-  <body class="bg-surface text-content antialiased min-h-screen flex flex-col">
-    <Header />
+<MainLayout title={pageTitle}>
+  <main class="max-w-4xl mx-auto px-8 py-20 flex-grow pt-32">
+    <h1 class="text-4xl font-bold tracking-tighter mb-12">Datenschutz</h1>
 
-    <main class="max-w-4xl mx-auto px-8 py-20 flex-grow">
-      <h1 class="text-4xl font-bold tracking-tighter mb-12">
-        Datenschutzerklärung
-      </h1>
+    <div class="space-y-12 text-content/70 leading-relaxed">
+      <section>
+        <h2 class="text-2xl font-bold text-content mb-6">1. Datenschutz auf einen Blick</h2>
+        <h3 class="font-bold text-content mb-2">Allgemeine Hinweise</h3>
+        <p>
+          Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+        </p>
+      </section>
 
-      <div class="space-y-8 text-content/70 leading-relaxed">
-        <section>
-          <p>
-            Wir informieren Sie nachfolgend gemäß den gesetzlichen Vorgaben des
-            Datenschutzrechts (insb. gemäß BDSG n.F. und der europäischen
-            Datenschutz-Grundverordnung ‚DS-GVO‘) über die Art, den Umfang und
-            Zweck der Verarbeitung personenbezogener Daten durch unser
-            Unternehmen. Diese Datenschutzerklärung gilt auch für unsere
-            Websites und Sozial-Media-Profile. Bezüglich der Definition von
-            Begriffen wie etwa „personenbezogene Daten“ oder „Verarbeitung“
-            verweisen wir auf Art. 4 DS-GVO.
-          </p>
-        </section>
+      <section>
+        <h2 class="text-2xl font-bold text-content mb-6">2. Verantwortliche Stelle</h2>
+        <p class="text-lg">
+          <strong>PROFESSIONAL FLYING TEAM GmbH</strong><br />
+          Eichendorffplatz 10a<br />
+          D-81369 München<br />
+          Deutschland<br />
+          E-Mail: <a href="mailto:info@profly.org" class="text-brand hover:underline">info@profly.org</a>
+        </p>
+      </section>
 
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Name und Kontaktdaten des / der Verantwortlichen
-          </h2>
-          <p>
-            Unser/e Verantwortliche/r (nachfolgend „Verantwortlicher“) i.S.d.
-            Art. 4 Zif. 7 DS-GVO ist:
-          </p>
-          <p class="mt-4 font-medium text-content">
-            ParaNomad<br />
-            Ellernstr. 87<br />
-            45326 Essen<br />
-            Geschäftsführender Einzelunternehmer: Olaf Klein<br />
-            Tel: +49 177 26 88 999<br />
-            E-Mail-Adresse: <a
-              href="mailto:info@paranomad.de"
-              class="text-brand-hover hover:underline">info@paranomad.de</a
-            >
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Datenarten, Zwecke der Verarbeitung und Kategorien betroffener
-            Personen
-          </h2>
-          <p>
-            Nachfolgend informieren wir Sie über Art, Umfang und Zweck der
-            Erhebung, Verarbeitung und Nutzung personenbezogener Daten.
-          </p>
-
-          <div class="mt-6 space-y-4">
-            <h3 class="font-bold text-content">
-              1. Arten der Daten, die wir verarbeiten
-            </h3>
+      <section>
+        <h2 class="text-2xl font-bold text-content mb-6">3. Datenerfassung auf dieser Website</h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-bold text-content mb-2">Server-Log-Dateien</h3>
             <p>
-              Nutzungsdaten (Zugriffszeiten, besuchte Websites etc.),
-              Bestandsdaten (Name, Adresse etc.), Kontaktdaten (Telefonnummer,
-              E-Mail, Fax etc.), Zahlungsdaten (Bankdaten, Kontodaten,
-              Zahlungshistorie etc.), Vertragsdaten (Gegenstand des Vertrages,
-              Laufzeit etc.), Inhaltsdaten (Texteingaben, Videos, Fotos etc.),
-              Kommunikationsdaten (IP-Adresse etc.).
-            </p>
-
-            <h3 class="font-bold text-content">
-              2. Zwecke der Verarbeitung nach Art. 13 Abs. 1 c) DS-GVO
-            </h3>
-            <p>
-              Abwicklung von Verträgen, Website technisch und wirtschaftlich
-              optimieren, Optimierung und statistische Auswertung unserer
-              Dienste, Kommerzielle Nutzung der Website unterstützen,
-              Nutzererfahrung verbessern, Website benutzerfreundlich gestalten,
-              Wirtschaftlicher Betrieb der Werbung und Website, Marketing /
-              Vertrieb / Werbung, Vermeidung von SPAM und Missbrauch,
-              Kundenservice und Kundenpflege, Kontaktanfragen abwickeln,
-              Websites mit Funktionen und Inhalten bereitstellen,
-              Unterbrechungsfreier,sicherer Betrieb unserer Website.
-            </p>
-
-            <h3 class="font-bold text-content">
-              3. Kategorien der betroffenen Personen nach Art. 13 Abs. 1 e)
-              DS-GVO
-            </h3>
-            <p>
-              Besucher/Nutzer der Website, Kunden, Interessenten. Die
-              betroffenen Personen werden zusammenfassend als „Nutzer“
-              bezeichnet.
+              Der Provider der Seiten erhebt und speichert automatisch Informationen in sog. Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind: Browsertyp und Browserversion, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage, IP-Adresse.
             </p>
           </div>
-        </section>
+          <div>
+            <h3 class="font-bold text-content mb-2">Kontaktformular</h3>
+            <p>
+              Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-bold text-content mb-2">Cloudflare Turnstile (Spamschutz)</h3>
+            <p>
+              Wir nutzen Cloudflare Turnstile zur Absicherung unserer Formulare vor Missbrauch durch Bots. Turnstile analysiert verschiedene Signale des Nutzers, um sicherzustellen, dass es sich um einen Menschen handelt. Hierbei werden Daten an Cloudflare Inc. übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am Schutz vor Spam).
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Rechtsgrundlagen der Verarbeitung personenbezogener Daten
-          </h2>
-          <ul class="list-disc pl-5 space-y-2">
-            <li>
-              Wenn wir Ihre Einwilligung für die Verarbeitung personenbezogenen
-              Daten eingeholt haben, ist Art. 6 Abs. 1 S. 1 lit. a) DS-GVO
-              Rechtsgrundlage.
-            </li>
-            <li>
-              Ist die Verarbeitung zur Erfüllung eines Vertrags oder zur
-              Durchführung vorvertraglicher Maßnahmen erforderlich, die auf Ihre
-              Anfrage hin erfolgen, so ist Art. 6 Abs. 1 S. 1 lit. b) DS-GVO
-              Rechtsgrundlage.
-            </li>
-            <li>
-              Ist die Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung
-              erforderlich, der wir unterliegen (z.B. gesetzliche
-              Aufbewahrungspflichten), so ist Art. 6 Abs. 1 S. 1 lit. c) DS-GVO
-              Rechtsgrundlage.
-            </li>
-            <li>
-              Ist die Verarbeitung erforderlich, um lebenswichtige Interessen
-              der betroffenen Person oder einer anderen natürlichen Person zu
-              schützen, so ist Art. 6 Abs. 1 S. 1 lit. d) DS-GVO
-              Rechtsgrundlage.
-            </li>
-            <li>
-              Ist die Verarbeitung zur Wahrung unserer oder der berechtigten
-              Interessen eines Dritten erforderlich und überwiegen diesbezüglich
-              Ihre Interessen oder Grundrechte und Grundfreiheiten nicht, so ist
-              Art. 6 Abs. 1 S. 1 lit. f) DS-GVO Rechtsgrundlage.
-            </li>
-          </ul>
-        </section>
+      <section>
+        <h2 class="text-2xl font-bold text-content mb-6">4. Analyse-Tools</h2>
+        <p>
+          Diese Webseite verzichtet weitgehend auf invasive Analyse-Tools. Wir nutzen lediglich technisch notwendige Daten für den fehlerfreien Betrieb der Website. Ein Tracking Ihres Surfverhaltens findet nicht statt.
+        </p>
+      </section>
 
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Weitergabe personenbezogener Daten an Dritte und Auftragsverarbeiter
-          </h2>
-          <p>
-            Ohne Ihre Einwilligung geben wir grundsätzlich keine Daten an Dritte
-            weiter. Sollte dies doch der Fall sein, dann erfolgt die Weitergabe
-            auf der Grundlage der zuvor genannten Rechtsgrundlagen z.B. bei der
-            Weitergabe von Daten an Online-Paymentanbieter zur Vertragserfüllung
-            oder aufgrund gerichtlicher Anordnung oder wegen einer gesetzlichen
-            Verpflichtung zur Herausgabe der Daten zum Zwecke der
-            Strafverfolgung, zur Gefahrenabwehr oder zur Durchsetzung der Rechte
-            am geistigen Eigentum.
-          </p>
-          <p class="mt-4">
-            Wir setzen zudem Auftragsverarbeiter (externe Dienstleister z.B. zum
-            Webhosting unserer Websites und Datenbanken) zur Verarbeitung Ihrer
-            Daten ein. Wenn im Rahmen einer Vereinbarung zur
-            Auftragsverarbeitung an die Auftragsverarbeiter Daten weitergegeben
-            werden, erfolgt dies immer nach Art. 28 DS-GVO. Wir wählen dabei
-            unsere Auftragsverarbeiter sorgfältig aus, kontrollieren diese
-            regelmäßig und haben uns ein Weisungsrecht hinsichtlich der Daten
-            einräumen lassen. Zudem müssen die Auftragsverarbeiter geeignete
-            technische und organisatorische Maßnahmen getroffen haben und die
-            Datenschutzvorschriften gem. BDSG n.F. und DS-GVO einhalten.
-          </p>
-        </section>
+      <section>
+        <h2 class="text-2xl font-bold text-content mb-6">5. Ihre Rechte</h2>
+        <p>
+          Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.
+        </p>
+      </section>
 
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Datenübermittlung in Drittstaaten
-          </h2>
-          <p>
-            Durch die Verabschiedung der europäischen
-            Datenschutz-Grundverordnung (DS-GVO) wurde eine einheitliche
-            Grundlage für den Datenschutz in Europa geschaffen. Ihre Daten
-            werden daher vorwiegend durch Unternehmen verarbeitet, für die
-            DS-GVO Anwendung findet. Sollte doch die Verarbeitung durch Dienste
-            Dritter außerhalb der Europäischen Union oder des Europäischen
-            Wirtschaftsraums stattfinden, so müssen diese die besonderen
-            Voraussetzungen der Art. 44 ff. DS-GVO erfüllen. Das bedeutet, die
-            Verarbeitung erfolgt aufgrund besonderer Garantien, wie etwa die von
-            der EU-Kommission offiziell anerkannte Feststellung eines der EU
-            entsprechenden Datenschutzniveaus oder der Beachtung offiziell
-            anerkannter spezieller vertraglicher Verpflichtungen, der so
-            genannten „Standardvertragsklauseln“.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Löschung von Daten und Speicherdauer
-          </h2>
-          <p>
-            Sofern nicht in dieser Datenschutzerklärung ausdrücklich angegeben,
-            werden Ihre personenbezogen Daten gelöscht oder gesperrt, sobald die
-            zur Verarbeitung erteilte Einwilligung von Ihnen widerrufen wird
-            oder der Zweck für die Speicherung entfällt bzw. die Daten für den
-            Zweck nicht mehr erforderlich sind, es sei denn deren weitere
-            Aufbewahrung ist zu Beweiszwecken erforderlich oder dem stehen
-            gesetzliche Aufbewahrungspflichten entgegenstehen. Darunter fallen
-            etwa handelsrechtliche Aufbewahrungspflichten von Geschäftsbriefen
-            nach § 257 Abs. 1 HGB (6 Jahre) sowie steuerrechtliche
-            Aufbewahrungspflichten nach § 147 Abs. 1 AO von Belegen (10 Jahre).
-            Wenn die vorgeschriebene Aufbewahrungsfrist abläuft, erfolgt eine
-            Sperrung oder Löschung Ihrer Daten, es sei denn die Speicherung ist
-            weiterhin für einen Vertragsabschluss oder zur Vertragserfüllung
-            erforderlich.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">Webhosting</h2>
-          <p>
-            Wir nutzen für den Betrieb dieser Website die Dienste eines
-            Webhosting-Anbieters. Hierbei werden Daten (z.B. IP-Adressen, Meta-
-            und Kommunikationsdaten) verarbeitet, um ein effizientes und
-            sicheres Onlineangebot zur Verfügung zu stellen. Die Rechtsgrundlage
-            hierfür ist unser berechtigtes Interesse an einer fehlerfreien und
-            sicheren Bereitstellung unserer Website (Art. 6 Abs. 1 lit. f.
-            DSGVO).
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">Cookies</h2>
-          <p>
-            Wir verwenden sog. Cookies bei Ihrem Besuch unserer Website. Cookies
-            sind kleine Textdateien, die Ihr Internet-Browser auf Ihrem Rechner
-            ablegt und speichert. Wenn Sie unsere Website erneut aufrufen, geben
-            diese Cookies Informationen ab, um Sie automatisch wiederzuerkennen.
-            Zu den Cookies zählen auch die sog. „Nutzer-IDs“, wo Angaben der
-            Nutzer mittels pseudonymisierter Profile gespeichert werden. Wir
-            informieren Sie dazu beim Aufruf unserer Website mittels eines
-            Hinweises auf unsere Datenschutzerklärung über die Verwendung von
-            Cookies zu den zuvor genannten Zwecken und wie Sie dieser
-            widersprechen bzw. deren Speicherung verhindern können („Opt-out“).
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-xl font-bold text-content mb-4">
-            Rechte der betroffenen Person
-          </h2>
-          <p>
-            Sie haben das Recht auf Auskunft (Art. 15 DS-GVO), Berichtigung
-            (Art. 16 DS-GVO), Löschung (Art. 17 DS-GVO), Einschränkung der
-            Verarbeitung (Art. 18 DS-GVO), Datenübertragbarkeit (Art. 20 DS-GVO)
-            und Widerspruch (Art. 21 DS-GVO). Bei einer Einwilligung haben Sie
-            das Recht des Widerrufs (Art. 7 Abs. 3 DS-GVO).
-          </p>
-          <p class="mt-4">
-            Zudem haben Sie das Recht auf Beschwerde bei einer Aufsichtsbehörde
-            (Art. 77 DS-GVO). In der Regel können Sie sich hierfür an die
-            Aufsichtsbehörde insbesondere in dem Mitgliedstaat ihres
-            Aufenthaltsorts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen
-            Verstoßes wenden.
-          </p>
-        </section>
-
-        <section class="text-sm pt-8 border-t border-surface-border italic">
-          <p>Stand: 07.11.2020</p>
-          <p>Quelle: Datenschutzerklärung von Juraforum.de</p>
-        </section>
-      </div>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+      <footer class="pt-12 border-t border-white/5 text-sm italic">
+        <p>Stand: 25.03.2026</p>
+      </footer>
+    </div>
+  </main>
+</MainLayout>

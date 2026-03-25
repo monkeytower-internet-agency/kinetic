@@ -1,0 +1,14 @@
+slug: de/fit-system
+type: grid
+title: 3x3 Perfect Fit
+heading: "Unser 3x3 PERFECT FIT System"
+content: "Einer der größten Gründe, warum Liegegurtzeuge manchmal „nicht passen“: Beine und Oberkörper sind nicht gleich proportioniert. Deshalb kommt KINETIC mit 9 Kombinationen."
+items:
+  - label: "Beinlängen"
+    value: "3"
+  - label: "Oberkörperlängen"
+    value: "3"
+  - label: "Kombinationen"
+    value: "9"
+button_text: "Lass dich zu deiner perfekten Größe beraten"
+button_link: "#kontakt"

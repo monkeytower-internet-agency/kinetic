@@ -54,7 +54,7 @@ body {
 }
 
 :root {
-  /* Boxxtool Base Palette */
+  /* ProFly Base Palette */
   --color-translucent: #f5f5f5;
   --color-hellgrau: #c5c7c4;
   --color-anthrazit: #383e42;
@@ -69,11 +69,11 @@ body {
   --theme-text: var(--color-anthrazit);
   --theme-surface-border: #f4f4f5; /* zinc-100 */
 
-  /* --- DEFAULT BRAND (Melonengelb) --- */
-  --theme-brand: var(--color-melonengelb);
-  --theme-brand-rgb: 255, 155, 0;
-  --theme-brand-hover: #e08800;
-  --theme-brand-glow: #ffaf2e;
+  /* --- DEFAULT BRAND (Verkehrsrot) --- */
+  --theme-brand: var(--color-verkehrsrot);
+  --theme-brand-rgb: 193, 18, 28;
+  --theme-brand-hover: #a00f17;
+  --theme-brand-glow: #e61a25;
   --theme-brand-text: #ffffff;
 }
 

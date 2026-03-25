@@ -37,7 +37,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: "de",
-    locales: ["de", "en", "tr", "hy"],
+    locales: ["de", "en"],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -46,7 +46,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      allowedHosts: ["dev.paranomad.de", "localhost", ".paranomad.de"],
+      allowedHosts: [".dalm.de", "localhost"],
     },
   },
 });

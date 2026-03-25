@@ -96,7 +96,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     let htmlBody = `
       <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-        <h2 style="color: #f97316;">Neue Anfrage von ParaNomad.de</h2>
+        <h2 style="color: #f97316;">Neue Anfrage von KINETIC</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
         ${mobile ? `<p><strong>Mobil:</strong> ${mobile}</p>` : ''}
@@ -128,17 +128,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     htmlBody += `
         <div style="margin-top: 30px; font-size: 10px; color: #999; text-align: center;">
-            Gesendet von ParaNomad.de Kontaktformular
+            Gesendet vom KINETIC Kontaktformular
         </div>
       </div>
     `;
 
     // 4. Construct MIME Message
     const mail = new MailComposer({
-      from: `"ParaNomad" <${from}>`,
+      from: `"ProFly" <${from}>`,
       to: to,
       replyTo: email,
-      subject: `[ParaNomad] Neue Anfrage von ${name}`,
+      subject: `[KINETIC] Neue Anfrage von ${name}`,
       text: textBody,
       html: htmlBody,
     });

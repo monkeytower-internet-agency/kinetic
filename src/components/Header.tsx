@@ -6,12 +6,13 @@ import { useTranslations, type Language } from "../i18n/utils";
 
 const getNavItems = (t: any, lang: Language) => {
   return [
-    { label: t("nav.specs"), href: "#specs" },
-    { label: t("nav.features"), href: "#features" },
-    { label: t("nav.sizing"), href: "#sizing" },
-    { label: t("nav.safety"), href: "#safety" },
-    { label: t("nav.media"), href: "#media" },
-    { label: t("nav.faq"), href: "#faq" },
+    { label: t("nav.features"), href: "/#features" },
+    { label: t("nav.specs"), href: "/#specs" },
+    { label: t("nav.safety"), href: "/#safety" },
+    { label: t("nav.media"), href: "/#media" },
+    { label: t("nav.sizing"), href: "/#sizing" },
+    { label: t("nav.faq"), href: "/#faq" },
+
   ];
 };
 
@@ -60,9 +61,11 @@ const Header: React.FC<HeaderProps> = ({ lang = "de" }) => {
         <div className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto w-full">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group relative z-50">
-            <span className="text-xl font-bold tracking-tighter text-content group-hover:text-brand transition-colors">
-              KINE<span className="text-brand">TIC</span>
-            </span>
+            <img 
+              src="/assets/logo-kinetic-white.png" 
+              alt="KINETIC Logo" 
+              className="h-8 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Nav */}

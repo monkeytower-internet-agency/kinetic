@@ -293,7 +293,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         <span className="text-xs text-content/60 font-light italic">
           Alternativ:{" "}
           <a
-            href="mailto:info@paranomad.de"
+            href="mailto:info@profly.org"
             className="text-brand hover:text-brand-hover transition-colors underline underline-offset-4"
           >
             Direkt eine Mail schreiben
