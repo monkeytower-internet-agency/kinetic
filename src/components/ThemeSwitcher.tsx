@@ -50,7 +50,8 @@ const ThemeSwitcher: React.FC = () => {
     ) as ColorAccent | null;
     const savedMode = localStorage.getItem("theme-mode") as ColorMode | null;
     const savedContrast = localStorage.getItem("theme-contrast") === "true";
-    const savedTextSize = parseInt(localStorage.getItem("theme-text-size") || "1");
+    const savedTextSize = parseInt(localStorage.getItem("theme-text-size") || "2");
+
 
     if (savedAccent && accents.some((a) => a.id === savedAccent)) {
       colorAccent.set(savedAccent);
@@ -241,14 +242,15 @@ const ThemeSwitcher: React.FC = () => {
                 High Contrast
               </div>
               <div 
-                className={`w-8 h-4 rounded-full relative transition-colors ${
-                  isHighContrast ? "bg-black border border-black" : "bg-black/20"
+                className={`w-10 h-5 rounded-full relative transition-colors border ${
+                  isHighContrast ? "bg-brand border-white" : "bg-black/40 border-surface-border"
                 }`}
               >
-                <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-all ${
-                  isHighContrast ? "right-0.5 bg-white shadow-sm" : "left-0.5 bg-white"
+                <div className={`absolute top-0.5 w-3.5 h-3.5 rounded-full transition-all border ${
+                  isHighContrast ? "right-1 bg-white border-white" : "left-1 bg-white border-transparent"
                 }`} />
               </div>
+
             </button>
 
 
@@ -264,15 +266,16 @@ const ThemeSwitcher: React.FC = () => {
                     <button
                      key={sizeLabel}
                      onClick={() => textSize.set(idx)}
-                     className={`py-1.5 rounded-md text-[10px] font-black transition-all cursor-pointer ${
+                     className={`py-1.5 rounded-xl text-[10px] font-black transition-all cursor-pointer border ${
                        currentTextSize === idx
                          ? isHighContrast 
-                           ? "bg-white text-black scale-110 shadow-lg" 
-                           : "bg-brand text-brand-text shadow-sm scale-110"
+                           ? "bg-white text-black border-white scale-110 shadow-[0_0_15px_rgba(255,255,255,0.4)]" 
+                           : "bg-brand text-brand-text border-brand shadow-sm scale-110"
                          : isHighContrast 
-                           ? "text-white/60 hover:text-white hover:bg-white/20" 
-                           : "text-content/60 hover:text-content hover:bg-surface-border"
+                           ? "text-white/60 border-white/20 hover:border-white/50" 
+                           : "text-content/60 border-transparent hover:bg-surface-border"
                      }`}
+
                     >
                       {sizeLabel}
                     </button>
