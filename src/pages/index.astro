@@ -41,7 +41,8 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
     <div class="md:hidden absolute right-0 top-0 bottom-0 w-[15%] z-20 pointer-events-auto touch-pan-y"></div>
 
     {/* Layer 3: Text & UI (Floating ABOVE the model) */}
-    <div class="relative z-30 space-y-4 max-w-7xl mx-auto pointer-events-none select-none py-10">
+    <div class="relative z-30 space-y-4 max-w-7xl mx-auto py-10">
+
       <div class="space-y-4">
         <p class="text-3xl md:text-5xl lg:text-7xl font-black tracking-[0.4em] text-brand uppercase animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-300 drop-shadow-2xl">
           {hero?.subheading?.split('\n')[0] || "- pure control -"}
@@ -55,11 +56,12 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
         </p>
       </div>
 
-      <div class="pt-8 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-1000 pointer-events-auto">
-        <a href="#kontakt" class="btn-primary min-w-[280px]">
+      <div class="pt-8 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-1000 relative z-50">
+        <a href="/kontakt" class="btn-primary min-w-[280px]">
           {hero?.button_text || "Beratung anfragen / Early Access"}
         </a>
       </div>
+
     </div>
 
     {/* Scroll Indicator - Mobile ONLY hint, acts as a scroll-safe bridge */}

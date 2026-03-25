@@ -4,4 +4,5 @@ title: Hero Section
 heading: KINETIC
 subheading: "pure control\ndas neue Gurtzeug von Profly."
 button_text: "Beratung anfragen / Early Access"
-button_link: "#kontakt"
+button_link: "/kontakt"
+
