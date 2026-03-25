@@ -5,6 +5,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { useTranslations, type Language } from "../i18n/utils";
 import { useStore } from "@nanostores/react";
 import { $theme } from "../stores/themeStore";
+import { navigate } from "astro:transitions/client";
 
 const getNavItems = (t: any, lang: Language) => {
   return [
@@ -51,9 +52,18 @@ const Header: React.FC<HeaderProps> = ({ lang = "de", announcement }) => {
         return;
       }
     }
-    // For page transitions, let the default behavior (Astro View Transitions) handle it
+
+    // Force Astro SPA transition for internal subpages (e.g. /kontakt, /)
+    if (href.startsWith("/") && !href.includes("#")) {
+      e.preventDefault();
+      setMenuOpen(false);
+      navigate(href);
+      return;
+    }
+
     setMenuOpen(false);
   };
+
 
   return (
     <>
@@ -75,7 +85,12 @@ const Header: React.FC<HeaderProps> = ({ lang = "de", announcement }) => {
 
         <div className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto w-full">
           {/* Logo - Dual logo Strategy for SSR transparency */}
-          <a href="/" className="flex items-center gap-3 group relative z-50">
+          <a 
+            href={prefix || "/"} 
+            onClick={(e) => handleNav(e, prefix || "/")}
+            className="flex items-center gap-3 group relative z-50"
+          >
+
             {/* White Logo (Visible in Dark Mode) */}
             <img 
               src="/assets/logo-kinetic-white.png"
