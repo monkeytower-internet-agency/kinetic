@@ -296,14 +296,15 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
       <h2 class="text-4xl md:text-6xl font-bold tracking-tight">{fit?.heading}</h2>
       <p class="text-xl text-content/60 font-light">{fit?.content}</p>
       
-      <div class="grid grid-cols-3 gap-4 pt-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10">
          {fit?.items?.map(item => (
-            <div class="p-8 bg-surface rounded-2xl border border-white/5 space-y-2">
-               <span class="text-4xl font-black text-brand">{item.value}</span>
-               <span class="block text-xs uppercase tracking-widest text-content/40 font-bold">{item.label}</span>
+            <div class="p-5 md:p-8 bg-surface rounded-2xl border border-surface-border space-y-2">
+               <span class="text-4xl md:text-5xl font-black text-brand inline-block">{item.value}</span>
+               <span class="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-content/40 font-bold">{item.label}</span>
             </div>
          ))}
       </div>
+
       <div class="pt-10">
          <a href="#kontakt" class="btn-outline">
             {fit?.button_text}
@@ -327,20 +328,21 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
     </div>
   </section>
 
-  {/* CONTACT */}
-  <section id="kontakt" class="py-24 md:py-40 bg-brand text-white">
-     <div class="max-w-5xl mx-auto px-6 text-center space-y-10">
-        <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic">Stay in Control.</h2>
-        <p class="text-xl md:text-2xl font-light opacity-80 max-w-2xl mx-auto">
-          Interessiert am KINETIC? Hinterlasse uns deine Nachricht für Updates zum Launch oder eine persönliche Beratung.
-        </p>
-        <div class="pt-10">
-           <a href="mailto:info@profly.org" class="inline-flex px-12 py-6 bg-white text-brand font-black text-xl rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">
-              Nimm Kontakt auf
-           </a>
-        </div>
-     </div>
-  </section>
+   {/* CONTACT CTA */}
+   <section id="kontakt-cta" class="py-24 md:py-40 bg-brand text-white">
+      <div class="max-w-5xl mx-auto px-6 text-center space-y-10">
+         <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic">Ready for Takeoff?</h2>
+         <p class="text-xl md:text-2xl font-light opacity-80 max-w-2xl mx-auto">
+           Werde Teil der Evolution. Behalte die volle Kontrolle und sichere dir jetzt deine KINETIC Konfiguration.
+         </p>
+         <div class="pt-10">
+            <a href="/kontakt" class="inline-flex px-12 py-6 bg-white text-brand font-black text-xl rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">
+               JETZT KINETIC KONFIGURIEREN
+            </a>
+         </div>
+      </div>
+   </section>
+
 
   <script>
     import { gsap } from "gsap";

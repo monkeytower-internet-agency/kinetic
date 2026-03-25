@@ -96,7 +96,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     let htmlBody = `
       <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-        <h2 style="color: #f97316;">Neue Anfrage von KINETIC</h2>
+        <h2 style="color: #c1121c;">Neue Anfrage von KINETIC</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
         ${mobile ? `<p><strong>Mobil:</strong> ${mobile}</p>` : ''}

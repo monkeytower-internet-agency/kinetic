@@ -27,19 +27,50 @@ const ContactForm: React.FC<ContactFormProps> = ({
   const [errorMsg, setErrorMsg] = useState("");
   const [successId, setSuccessId] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
   const [uid] = useState(() => Math.random().toString(36).slice(2, 8));
+
 
   // Initialize Turnstile when the component mounts
   useEffect(() => {
+    const initTurnstile = () => {
+      if (typeof window !== "undefined" && (window as any).turnstile && turnstileRef.current) {
+        try {
+          const id = (window as any).turnstile.render(turnstileRef.current, {
+            sitekey: turnstileSiteKey || import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "",
+            theme: theme === "dark" ? "dark" : "light",
+            callback: (token: string) => {
+              // Token is automatically added to a hidden input by Turnstile usually,
+              // but we can catch it here if needed.
+            },
+          });
+          setTurnstileWidgetId(id);
+        } catch (e) {
+          console.warn("Turnstile render failed:", e);
+        }
+      }
+    };
+
     // Load Turnstile script if not already loaded
     if (!document.querySelector('script[src*="turnstile"]')) {
       const script = document.createElement("script");
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
       script.async = true;
       script.defer = true;
+      script.onload = initTurnstile;
       document.head.appendChild(script);
+    } else {
+      // Script already exists, try to init (wait for turnstile to be available)
+      const checkTurnstile = setInterval(() => {
+        if ((window as any).turnstile) {
+          initTurnstile();
+          clearInterval(checkTurnstile);
+        }
+      }, 100);
+      return () => clearInterval(checkTurnstile);
     }
-  }, []);
+  }, [theme]); // Re-render turnstile if theme changes to match visuals
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,8 +126,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
     setSuccessId("");
     formRef.current?.reset();
     // Reset Turnstile
-    if ((window as any).turnstile) {
-      (window as any).turnstile.reset();
+    if (turnstileWidgetId && (window as any).turnstile) {
+      (window as any).turnstile.reset(turnstileWidgetId);
     }
   };
 
@@ -112,7 +143,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
             Nachricht gesendet!
           </h3>
           <p className="text-content/70 font-light">
-            Danke für deine Anfrage – ich melde mich persönlich bei dir.
+            Danke für deine Anfrage – wir melden uns persönlich bei dir.
           </p>
         </div>
         {successId && (
@@ -254,21 +285,16 @@ const ContactForm: React.FC<ContactFormProps> = ({
           name="message"
           id={`message-${uid}`}
           rows={4}
-          placeholder="Erzähl mir von deinem Projekt…"
+          placeholder="Wie können wir dir helfen?"
           className="w-full bg-body border border-surface-border px-4 py-3 text-content rounded-xl focus:border-brand focus:ring-2 focus:ring-brand/10 focus:outline-none transition-all resize-none placeholder:text-content/30"
         />
       </div>
 
-      {/* Turnstile */}
+      {/* Turnstile Container */}
       <div className="flex justify-center py-1">
-        <div
-          className="cf-turnstile"
-          data-sitekey={
-            turnstileSiteKey || import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ""
-          }
-          data-theme={theme === "dark" ? "dark" : "light"}
-        />
+        <div ref={turnstileRef} />
       </div>
+
 
       {/* Submit */}
       <button

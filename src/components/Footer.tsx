@@ -9,8 +9,9 @@ const Footer: React.FC<Props> = ({ lang = "de" }) => {
   const t = useTranslations(lang);
 
   return (
-    <footer className="py-12 px-8 border-t border-surface-border bg-surface/30">
+    <footer className="py-12 px-8 border-t border-white/5 bg-[#0a0a0a] text-white/50 dark">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
+
         <div className="mb-10">
           <img 
             src="/assets/profly-logo-art.png" 
