@@ -215,6 +215,89 @@ body {
   --theme-text: #ffffff !important;
 }
 
+/* --- RUTHLESS HIGH CONTRAST (Global Overrides) --- */
+.high-contrast, 
+.high-contrast * {
+  border-color: #ffffff !important;
+  outline-color: #ffffff !important;
+  text-decoration-color: #ffffff !important;
+}
+
+/* Force Contrast on Backgrounds */
+.high-contrast .bg-brand,
+.high-contrast .bg-brand\/10,
+.high-contrast .bg-surface,
+.high-contrast .bg-surface\/30,
+.high-contrast .bg-surface\/50,
+.high-contrast .bg-zinc-900,
+.high-contrast .bg-zinc-800,
+.high-contrast .bg-body,
+.high-contrast .bg-white,
+.high-contrast section,
+.high-contrast div[class*="bg-zinc"],
+.high-contrast div[class*="bg-surface"] {
+  background-color: #000000 !important;
+}
+
+/* Force Contrast on Text */
+.high-contrast .text-white,
+.high-contrast .text-white\/10,
+.high-contrast .text-white\/20,
+.high-contrast .text-white\/30,
+.high-contrast .text-white\/40,
+.high-contrast .text-white\/60,
+.high-contrast .text-black,
+.high-contrast .text-brand,
+.high-contrast .text-brand\/60,
+.high-contrast .text-content,
+.high-contrast .text-content\/30,
+.high-contrast .text-content\/40,
+.high-contrast .text-content\/60,
+.high-contrast .text-content\/70,
+.high-contrast .text-content\/90,
+.high-contrast p,
+.high-contrast span,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast blockquote {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Specific Interactive Elements */
+.high-contrast .btn-primary,
+.high-contrast .btn-primary * {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 4px solid #ffffff !important;
+}
+
+.high-contrast .btn-outline,
+.high-contrast .btn-outline * {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 4px solid #ffffff !important;
+}
+
+/* Mailto and specific contact links */
+.high-contrast a[href^="mailto"],
+.high-contrast a[href^="mailto"] * {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* SVG and Icon Visibility */
+.high-contrast svg {
+  stroke: #ffffff !important;
+}
+.high-contrast .text-brand svg,
+.high-contrast .text-content svg {
+  color: #ffffff !important;
+}
+
+
 /* --- ACCESSIBILITY: TEXT SCALING --- */
 html.text-size-small { font-size: 14px; }
 html.text-size-base { font-size: 16px; }

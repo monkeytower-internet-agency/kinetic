@@ -164,9 +164,14 @@ const ThemeSwitcher: React.FC = () => {
                   onClick={() => colorMode.set(m.id)}
                   className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-xl text-[11px] font-bold transition-all cursor-pointer ${
                     currentMode === m.id
-                      ? "bg-brand text-brand-text shadow-lg scale-[1.05]"
-                      : "text-content/60 hover:text-content hover:bg-surface-border/50"
+                      ? isHighContrast 
+                        ? "bg-white text-black ring-2 ring-white scale-110" 
+                        : "bg-brand text-brand-text shadow-lg scale-[1.05]"
+                      : isHighContrast 
+                        ? "text-white opacity-50 border border-white/20" 
+                        : "text-content/60 hover:text-content hover:bg-surface-border/50"
                   }`}
+
                 >
                   {m.icon}
                   {m.label}
