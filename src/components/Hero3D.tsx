@@ -89,9 +89,10 @@ const Hero3D: React.FC = () => {
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
 
         <Suspense fallback={null}>
-          <group position={[0, 0.4, 0]}>
+          <group position={[0, 0.8, 0]}>
             <KineticPod />
           </group>
+
           <ContactShadows 
             position={[0, -2.2, 0]} 
             opacity={0.4} 
