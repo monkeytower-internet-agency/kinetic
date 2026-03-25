@@ -7,13 +7,16 @@ import type { ColorAccent, ColorMode } from "../stores/themeStore";
 
 
 const accents: { id: ColorAccent; label: string; bgClass: string }[] = [
-  { id: "verkehrsrot", label: "ProFly Verkehrsrot", bgClass: "bg-[#c1121c]" },
-  { id: "anthrazit", label: "ProFly Anthrazit", bgClass: "bg-[#383e42]" },
-  { id: "lichtgrau", label: "Light Gray", bgClass: "bg-[#c5c7c4]" },
-  { id: "klartuerkis", label: "Klartürkis", bgClass: "bg-[#0b8a81]" },
-  { id: "maerzgruen", label: "Märzgrün", bgClass: "bg-[#add400]" },
+  { id: "verkehrsrot", label: "ProFly Red (Logo)", bgClass: "bg-[#c1121c]" },
+  { id: "diva", label: "Diva", bgClass: "bg-[#BAE93D]" },
+  { id: "sangry", label: "Sangry", bgClass: "bg-[#C4577D]" },
+  { id: "korben", label: "Korben", bgClass: "bg-[#F19D5B]" },
+  { id: "neptune", label: "Neptune", bgClass: "bg-[#6FB1CD]" },
+  { id: "anthrazit", label: "Anthrazit", bgClass: "bg-[#383e42]" },
+  { id: "lichtgrau", label: "Lichtgrau", bgClass: "bg-[#c5c7c4]" },
   { id: "melonengelb", label: "Melonengelb", bgClass: "bg-[#ff9b00]" },
 ];
+
 
 
 const modes: { id: ColorMode; label: string; icon: React.ReactNode }[] = [
@@ -28,12 +31,17 @@ const ThemeSwitcher: React.FC = () => {
   const isHighContrast = useStore(highContrast);
   const currentTextSize = useStore(textSize);
   const [isOpen, setIsOpen] = useState(false);
+  const [lockedMenuSize, setLockedMenuSize] = useState(currentTextSize);
   const ref = useRef<HTMLDivElement>(null);
 
   // Sync internal open state to global store to block 3D interactions
   useEffect(() => {
     isInteractingWithUI.set(isOpen);
+    if (isOpen) {
+      setLockedMenuSize(currentTextSize);
+    }
   }, [isOpen]);
+
 
 
   useEffect(() => {
@@ -133,11 +141,17 @@ const ThemeSwitcher: React.FC = () => {
 
       {/* Dropdown Menu — click-controlled, not hover-only */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-3 w-64 bg-surface border border-surface-border rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden z-50 p-4 space-y-5 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div 
+          className="absolute right-0 top-full mt-3 w-72 bg-surface border border-surface-border rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden z-50 p-4 space-y-5 animate-in fade-in slide-in-from-top-2 duration-200"
+          style={{ 
+            fontSize: (14 + lockedMenuSize * 2) + "px",
+            lineHeight: "1.5"
+          }} 
+        >
           {/* Dark / Light Mode Toggle */}
           <div>
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-3 px-1 flex justify-between items-center">
-              <span>Optionen</span>
+              <span>Darstellung</span>
               <span className="text-content/30 font-normal lowercase tracking-normal">
                 {currentMode === "system" ? "System" : currentMode}
               </span>
@@ -150,16 +164,39 @@ const ThemeSwitcher: React.FC = () => {
                   onClick={() => colorMode.set(m.id)}
                   className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-xl text-[10px] font-bold transition-all cursor-pointer ${
                     currentMode === m.id
-                      ? "bg-brand text-white shadow-lg scale-[1.05]"
+                      ? "bg-brand text-brand-text shadow-lg scale-[1.05]"
                       : "text-content/60 hover:text-content hover:bg-surface-border/50"
                   }`}
                 >
-                  <span
-                    className={currentMode === m.id ? "text-brand-text" : ""}
-                  >
-                    {m.icon}
-                  </span>
+                  {m.icon}
                   {m.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Accent Color Selection - RESTORED & EXTENDED */}
+          <div className="pt-2 border-t border-surface-border">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-4 px-1">
+              Farbkonfiguration
+            </div>
+            <div className="grid grid-cols-5 gap-3">
+              {accents.map((a) => (
+                <button
+                  type="button"
+                  key={a.id}
+                  onClick={() => colorAccent.set(a.id)}
+                  title={a.label}
+                  className={`relative aspect-square rounded-full flex items-center justify-center transition-transform hover:scale-125 cursor-pointer z-10 ${
+                    currentAccent === a.id ? "scale-110" : ""
+                  }`}
+                >
+                  <div
+                    className={`w-full h-full rounded-full shadow-inner border border-surface-border ${a.bgClass} transition-transform duration-300 hover:-rotate-12`}
+                  />
+                  {currentAccent === a.id && (
+                    <div className="absolute -inset-1 rounded-full border-2 border-brand" />
+                  )}
                 </button>
               ))}
             </div>
@@ -198,13 +235,13 @@ const ThemeSwitcher: React.FC = () => {
               </div>
             </button>
 
-            {/* Text Size Slider Mockup since it's cleaner in UI */}
+            {/* Text Size Selector */}
             <div className="space-y-3 bg-body p-3 rounded-xl border border-surface-border">
               <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-content/40">
                 <div className="flex items-center gap-2">
                   <Type className="w-4 h-4" /> Textgröße
                 </div>
-                <span>{["Klein", "Standard", "Mittel", "Groß", "Maximum"][currentTextSize]}</span>
+                <span>{["Klein", "Std.", "Mit.", "Gr.", "Max."][currentTextSize]}</span>
               </div>
               <div className="flex items-center gap-2">
                 <input 
@@ -219,6 +256,9 @@ const ThemeSwitcher: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
 
         </div>
       )}

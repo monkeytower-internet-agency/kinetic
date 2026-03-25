@@ -62,6 +62,11 @@ body {
   --color-maerzgruen: #add400;
   --color-melonengelb: #ff9b00;
   --color-verkehrsrot: #c1121c;
+  --color-diva: #BAE93D;
+  --color-sangry: #C4577D;
+  --color-korben: #F19D5B;
+  --color-neptune: #6FB1CD;
+
 
   /* --- LIGHT MODE (Default) --- */
   --theme-bg: var(--color-translucent);
@@ -129,6 +134,39 @@ body {
   --theme-brand-glow: #e61a25;
   --theme-brand-text: #ffffff;
 }
+
+[data-brand="diva"] {
+  --theme-brand: var(--color-diva);
+  --theme-brand-rgb: 186, 233, 61;
+  --theme-brand-hover: #a0c934;
+  --theme-brand-glow: #c8f545;
+  --theme-brand-text: var(--color-anthrazit);
+}
+
+[data-brand="sangry"] {
+  --theme-brand: var(--color-sangry);
+  --theme-brand-rgb: 196, 87, 125;
+  --theme-brand-hover: #a64a6a;
+  --theme-brand-glow: #d66a90;
+  --theme-brand-text: #ffffff;
+}
+
+[data-brand="korben"] {
+  --theme-brand: var(--color-korben);
+  --theme-brand-rgb: 241, 157, 91;
+  --theme-brand-hover: #d1874e;
+  --theme-brand-glow: #ffb47a;
+  --theme-brand-text: #ffffff;
+}
+
+[data-brand="neptune"] {
+  --theme-brand: var(--color-neptune);
+  --theme-brand-rgb: 111, 177, 205;
+  --theme-brand-hover: #5d93ac;
+  --theme-brand-glow: #8ac6df;
+  --theme-brand-text: #ffffff;
+}
+
 
 [data-brand="hellgrau"] {
   --theme-brand: var(--color-hellgrau);
