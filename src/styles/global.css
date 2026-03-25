@@ -146,6 +146,51 @@ body {
   --theme-brand-text: #ffffff;
 }
 
+[data-brand="lichtgrau"] {
+  --theme-brand: var(--color-hellgrau);
+  --theme-brand-rgb: 197, 199, 196;
+  --theme-brand-hover: #a3a6a1;
+  --theme-brand-glow: #e5e8e3;
+  --theme-brand-text: var(--color-anthrazit);
+}
+
+[data-brand="melonengelb"] {
+  --theme-brand: var(--color-melonengelb);
+  --theme-brand-rgb: 255, 155, 0;
+  --theme-brand-hover: #cc7a00;
+  --theme-brand-glow: #ffb84d;
+  --theme-brand-text: var(--color-anthrazit);
+}
+
+/* --- ACCESSIBILITY: HIGH CONTRAST --- */
+.high-contrast {
+  --theme-surface-border: #ffffff !important;
+  --theme-text: #ffffff !important;
+  --theme-bg: #000000 !important;
+  --theme-surface: #000000 !important;
+  --theme-brand: #ffffff !important;
+  --theme-brand-text: #000000 !important;
+}
+.dark.high-contrast {
+  --theme-text: #ffffff !important;
+}
+
+/* --- ACCESSIBILITY: TEXT SCALING --- */
+html.text-size-small { font-size: 14px; }
+html.text-size-base { font-size: 16px; }
+html.text-size-medium { font-size: 18px; }
+html.text-size-large { font-size: 20px; }
+html.text-size-xl { font-size: 24px; }
+
+@media (min-width: 768px) {
+  html.text-size-small { font-size: 16px; }
+  html.text-size-base { font-size: 18px; }
+  html.text-size-medium { font-size: 20px; }
+  html.text-size-large { font-size: 22px; }
+  html.text-size-xl { font-size: 28px; }
+}
+
+
 /* Specific Fix: Anthrazit Brand Visibility in Dark Mode */
 .dark[data-brand="anthrazit"] {
   --theme-brand: #6a747a; /* Lightened for contrast against bg */

@@ -1,14 +1,18 @@
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Float, ContactShadows, Environment } from '@react-three/drei';
+import { useStore } from '@nanostores/react';
+import { isInteractingWithUI } from '../stores/themeStore';
 import * as THREE from 'three';
 
 function KineticPod() {
   const meshRef = useRef<THREE.Group>(null);
+  const isBlocked = useStore(isInteractingWithUI);
 
   // Gentle auto-rotation
   useFrame((state) => {
-    if (meshRef.current) {
+    // Only auto-rotate if menu is closed
+    if (meshRef.current && !isBlocked) {
       meshRef.current.rotation.y += 0.003;
     }
   });
@@ -50,13 +54,33 @@ function KineticPod() {
 }
 
 const Hero3D: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const isBlocked = useStore(isInteractingWithUI);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div 
+      style={{ 
+        width: '100%', 
+        height: '100%', 
+        position: 'absolute', 
+        inset: 0,
+        pointerEvents: isBlocked ? 'none' : 'auto' // Prevent interaction when menu is open
+      }}
+    >
       <Canvas 
         shadows 
         dpr={[1, 2]} 
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        style={{ pointerEvents: 'auto', touchAction: 'none' }}
+        camera={{ position: [0, 0, 5], fov: 40 }}
+        style={{ touchAction: isBlocked ? 'auto' : 'none' }} // Allow scrolling when blocked
       >
         <PerspectiveCamera makeDefault position={[0, 0, 5]} />
         
@@ -77,8 +101,9 @@ const Hero3D: React.FC = () => {
         </Suspense>
 
         <OrbitControls 
+          enabled={!isBlocked} // Completely disable controls when menu is open
           enablePan={false}
-          enableZoom={true} // Re-enabled for pinch-zoom on mobile
+          enableZoom={isMobile}
           enableDamping={true}
           dampingFactor={0.05}
           rotateSpeed={0.8}

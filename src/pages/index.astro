@@ -23,26 +23,27 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 
 <MainLayout title={pageTitle}>
   {/* HERO SECTION */}
-  <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-10 relative overflow-hidden bg-black">
+  <section id="hero" class="min-h-[100dvh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden bg-black">
     {/* Layer 0: Deep Background Base */}
-    <div class="absolute inset-0 bg-gradient-to-b from-brand/20 via-black to-black opacity-60 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-brand/20 via-black to-black opacity-80 pointer-events-none"></div>
 
-    {/* Layer 1: 3D Visual Centerpiece - CONSTRAINED for mobile scroll safe-zone */}
-    <div class="w-full max-w-5xl h-[60vh] md:h-[75vh] relative z-20 pointer-events-auto cursor-grab active:cursor-grabbing">
+    {/* Layer 1: Immersion Layer - Full width and height (No Boxes!) */}
+    <div class="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
       <Hero3D client:only="react" />
     </div>
 
-    {/* Layer 2: Soft Overlays for depth */}
-    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+    {/* Layer 2: Mobile Scroll Side-Grip (Invisible touch-path for scrolling on mobile - above 3D, below text) */}
+    <div class="md:hidden absolute left-0 top-0 bottom-0 w-[15%] z-20 pointer-events-auto touch-pan-y"></div>
+    <div class="md:hidden absolute right-0 top-0 bottom-0 w-[15%] z-20 pointer-events-auto touch-pan-y"></div>
 
-    {/* Layer 3: Interactive Text & UI (Floating ABOVE the model slightly or around it) */}
-    <div class="relative z-30 space-y-12 max-w-7xl mx-auto pointer-events-none select-none -mt-32 md:-mt-48">
-      {/* Heading removed per user request for clean 3D look */}
-      
-      <div class="space-y-6">
-        <p class="text-3xl md:text-6xl font-black tracking-[0.4em] text-brand uppercase animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-300 drop-shadow-2xl">
+    {/* Layer 3: Text & UI (Floating ABOVE the model) */}
+    <div class="relative z-30 space-y-4 max-w-7xl mx-auto pointer-events-none select-none py-10">
+      <div class="space-y-4">
+        <p class="text-3xl md:text-5xl lg:text-7xl font-black tracking-[0.4em] text-brand uppercase animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-300 drop-shadow-2xl">
           {hero?.subheading?.split('\n')[0] || "- pure control -"}
         </p>
+
+
 
 
         <p class="text-lg md:text-2xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in duration-1000 delay-700">
@@ -50,19 +51,20 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
         </p>
       </div>
 
-      <div class="pt-10 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-1000 pointer-events-auto">
+      <div class="pt-8 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-1000 pointer-events-auto">
         <a href="#kontakt" class="btn-primary min-w-[280px]">
           {hero?.button_text || "Beratung anfragen / Early Access"}
         </a>
       </div>
     </div>
 
-    {/* Scroll Indicator - Visual cue for touch-safe zone */}
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 opacity-30 animate-pulse pointer-events-none flex flex-col items-center gap-4">
-       <span class="text-[10px] tracking-[0.5em] uppercase font-black text-white">Scroll to Explore</span>
-       <div class="w-px h-12 bg-gradient-to-b from-white to-transparent"></div>
+    {/* Scroll Indicator - Mobile ONLY hint, hidden on desktop */}
+    <div class="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 z-40 opacity-30 animate-pulse pointer-events-none flex flex-col items-center gap-4">
+       <span class="text-[9px] tracking-[0.5em] uppercase font-black text-white">Swipe to Rotate / Scroll to continue</span>
+       <div class="w-px h-8 bg-gradient-to-b from-white to-transparent"></div>
     </div>
   </section>
+
 
 
 
