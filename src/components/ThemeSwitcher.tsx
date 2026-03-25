@@ -7,15 +7,13 @@ import type { ColorAccent, ColorMode } from "../stores/themeStore";
 
 
 const accents: { id: ColorAccent; label: string; bgClass: string }[] = [
-  { id: "verkehrsrot", label: "ProFly Red (Logo)", bgClass: "bg-[#c1121c]" },
+  { id: "verkehrsrot", label: "ProFly", bgClass: "bg-[#c1121c]" },
   { id: "diva", label: "Diva", bgClass: "bg-[#BAE93D]" },
   { id: "sangry", label: "Sangry", bgClass: "bg-[#C4577D]" },
   { id: "korben", label: "Korben", bgClass: "bg-[#F19D5B]" },
   { id: "neptune", label: "Neptune", bgClass: "bg-[#6FB1CD]" },
-  { id: "anthrazit", label: "Anthrazit", bgClass: "bg-[#383e42]" },
-  { id: "lichtgrau", label: "Lichtgrau", bgClass: "bg-[#c5c7c4]" },
-  { id: "melonengelb", label: "Melonengelb", bgClass: "bg-[#ff9b00]" },
 ];
+
 
 
 
@@ -175,37 +173,41 @@ const ThemeSwitcher: React.FC = () => {
             </div>
           </div>
 
-          {/* Accent Color Selection - RESTORED & EXTENDED */}
+          {/* Accent Color Selection - Labeled List */}
           <div className="pt-2 border-t border-surface-border">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-4 px-1">
-              Farbkonfiguration
+              Farbwahl
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-4">
               {accents.map((a) => (
-                <button
-                  type="button"
-                  key={a.id}
-                  onClick={() => colorAccent.set(a.id)}
-                  title={a.label}
-                  className={`relative aspect-square rounded-full flex items-center justify-center transition-transform hover:scale-125 cursor-pointer z-10 ${
-                    currentAccent === a.id ? "scale-110" : ""
-                  }`}
-                >
-                  <div
-                    className={`w-full h-full rounded-full shadow-inner border border-surface-border ${a.bgClass} transition-transform duration-300 hover:-rotate-12`}
-                  />
-                  {currentAccent === a.id && (
-                    <div className="absolute -inset-1 rounded-full border-2 border-brand" />
-                  )}
-                </button>
+                <div key={a.id} className="flex flex-col items-center gap-1.5 opacity-100! group">
+                  <button
+                    type="button"
+                    onClick={() => colorAccent.set(a.id)}
+                    title={a.label}
+                    className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-transform hover:scale-110 cursor-pointer z-10 ${
+                      currentAccent === a.id ? "scale-105" : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-full h-full rounded-full shadow-inner border border-surface-border ${a.bgClass}`}
+                    />
+                    {currentAccent === a.id && (
+                      <div className="absolute -inset-1 rounded-full border-2 border-brand" />
+                    )}
+                  </button>
+                  <span className={`text-[8px] font-bold uppercase tracking-tighter transition-colors ${currentAccent === a.id ? "text-brand" : "text-content/40 group-hover:text-content"}`}>
+                    {a.label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Accessibility Section */}
           <div className="pt-2 border-t border-surface-border space-y-4">
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-3 px-1 flex justify-between items-center">
-              <span>Zugänglichkeit</span>
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-content/40 mb-3 px-1 flex justify-between items-center opacity-100!">
+              <span>Konfiguration</span>
               <button 
                 onClick={() => {
                   highContrast.set(false);
@@ -226,36 +228,44 @@ const ThemeSwitcher: React.FC = () => {
                   : "bg-body border-surface-border text-content/60 hover:border-brand/40"
               }`}
             >
-              <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-widest">
+              <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-widest opacity-100!">
                 <Contrast className="w-4 h-4" />
-                Hoher Kontrast
+                Contrast
               </div>
-              <div className={`w-10 h-5 rounded-full relative transition-colors ${isHighContrast ? "bg-brand" : "bg-black/20"}`}>
-                <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${isHighContrast ? "right-1" : "left-1"}`} />
+              <div 
+                className={`w-8 h-4 rounded-full relative transition-colors ${isHighContrast ? "bg-brand" : "bg-black/20"}`}
+                style={{ backgroundColor: isHighContrast ? 'var(--theme-brand)' : '' }}
+              >
+                <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-all ${isHighContrast ? "right-0.5 bg-black" : "left-0.5 bg-white"}`} />
               </div>
             </button>
 
-            {/* Text Size Selector */}
+
+            {/* Text Size Selector - Glider Sizing Icons/Buttons */}
             <div className="space-y-3 bg-body p-3 rounded-xl border border-surface-border">
-              <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-content/40">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-content/40 mb-2 opacity-100!">
                 <div className="flex items-center gap-2">
-                  <Type className="w-4 h-4" /> Textgröße
+                  <Type className="w-4 h-4" /> Size
                 </div>
-                <span>{["Klein", "Std.", "Mit.", "Gr.", "Max."][currentTextSize]}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <input 
-                  type="range"
-                  min="0"
-                  max="4"
-                  step="1"
-                  value={currentTextSize}
-                  onChange={(e) => textSize.set(parseInt(e.target.value))}
-                  className="w-full accent-brand cursor-pointer"
-                />
+              <div className="grid grid-cols-5 gap-1 bg-surface p-1 rounded-lg">
+                {["XS", "S", "M", "L", "XL"].map((sizeLabel, idx) => (
+                   <button
+                    key={sizeLabel}
+                    onClick={() => textSize.set(idx)}
+                    className={`py-1.5 rounded-md text-[10px] font-black transition-all cursor-pointer ${
+                      currentTextSize === idx
+                        ? "bg-brand text-brand-text shadow-sm scale-110"
+                        : "text-content/60 hover:text-content hover:bg-surface-border"
+                    }`}
+                   >
+                     {sizeLabel}
+                   </button>
+                ))}
               </div>
             </div>
           </div>
+
         </div>
       )}
     </div>

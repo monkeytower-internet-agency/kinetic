@@ -1,9 +1,10 @@
 import { atom, computed } from 'nanostores';
 
-export type ColorAccent = "verkehrsrot" | "diva" | "sangry" | "korben" | "neptune" | "anthrazit" | "lichtgrau" | "melonengelb";
+export type ColorAccent = "verkehrsrot" | "diva" | "sangry" | "korben" | "neptune";
 export type ColorMode = "light" | "dark" | "system";
 
 export const colorAccent = atom<ColorAccent>("verkehrsrot");
+
 
 export const colorMode = atom<ColorMode>("system");
 export const highContrast = atom<boolean>(false);
