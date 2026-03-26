@@ -74,27 +74,28 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
           key={i} 
           className={`faq-item group overflow-hidden rounded-[2.5rem] border backdrop-blur-md transition-all duration-500 ${
             openIndex === i 
-              ? "bg-white/[0.08] border-brand/50 shadow-[0_30px_100px_rgba(var(--theme-brand-rgb),0.1)]" 
-              : "bg-surface/30 border-white/5 hover:bg-white/[0.05] hover:border-white/10"
+              ? "bg-brand/[0.03] border-brand/30 shadow-[0_30px_100px_rgba(var(--theme-brand-rgb),0.05)]" 
+              : "bg-surface/30 border-surface-border/50 hover:bg-surface/50 hover:border-brand/20"
           }`}
         >
           <button
             onClick={() => toggle(i)}
-            className="w-full flex items-center justify-between p-8 md:p-10 text-left focus:outline-none"
+            className="w-full flex items-center justify-between p-8 md:p-10 text-left focus:outline-none cursor-pointer"
           >
-            <span className={`text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 ${openIndex === i ? "text-brand" : "text-white"}`}>
+            <span className={`text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 ${openIndex === i ? "text-brand" : "text-content"}`}>
               {item.label}
             </span>
             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-700 ${
-              openIndex === i ? "bg-brand rotate-180 shadow-lg" : "bg-white/5 group-hover:bg-white/10"
+              openIndex === i ? "bg-brand rotate-180 shadow-lg" : "bg-surface-border/10 group-hover:bg-brand/10"
             }`}>
               {openIndex === i ? (
                 <Minus className="w-6 h-6 text-white" />
               ) : (
-                <Plus className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
+                <Plus className={`w-6 h-6 transition-transform group-hover:scale-110 ${openIndex === i ? "text-white" : "text-content"}`} />
               )}
             </div>
           </button>
+
           
           <div 
             ref={el => contentRefs.current[i] = el}
