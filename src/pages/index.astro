@@ -29,9 +29,10 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 
 <MainLayout title={pageTitle}>
   {/* HERO SECTION */}
-  <section id="hero" class="min-h-[100dvh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden bg-black">
+  <section id="hero" class="min-h-[100dvh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden bg-body transition-colors duration-700">
     {/* Layer 0: Deep Background Base */}
-    <div class="absolute inset-0 bg-gradient-to-b from-brand/20 via-black to-black opacity-80 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-brand/20 via-body to-body opacity-80 pointer-events-none transition-colors duration-700"></div>
+
 
     {/* Layer 1: Immersion Layer - Full width and height (No Boxes!) */}
     <div class="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
@@ -49,9 +50,10 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
           {hero?.subheading?.split('\n')[0] || "- pure control -"}
         </p>
 
-        <p class="text-lg md:text-2xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in duration-1000 delay-700">
+        <p class="text-lg md:text-2xl text-content/40 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in duration-1000 delay-700">
           {hero?.subheading?.split('\n')[1] || "KINETIC - das neue Paragliding-Gurtzeug von ProFly"}
         </p>
+
 
 
       </div>
