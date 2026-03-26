@@ -7,22 +7,24 @@ import FAQAccordion from "../components/FAQAccordion";
 
 
 const allSections = await getCollection("sections");
-const hero = allSections.find(s => s.data.slug === 'hero')?.data;
-const intro = allSections.find(s => s.data.slug === 'intro')?.data;
-const storyTired = allSections.find(s => s.data.slug === 'story-tired')?.data;
-const cls = allSections.find(s => s.data.slug === 'cls')?.data;
-const agility = allSections.find(s => s.data.slug === 'agility-control')?.data;
-const safety = allSections.find(s => s.data.slug === 'safety')?.data;
-const storyCalm = allSections.find(s => s.data.slug === 'story-calm')?.data;
-const media = allSections.find(s => s.data.slug === 'media')?.data;
-const specs = allSections.find(s => s.data.slug === 'specs')?.data;
-const fit = allSections.find(s => s.data.slug === 'fit-system')?.data;
+const hero = allSections.find(s => s.id.endsWith('/hero') || s.data.slug === 'hero')?.data;
+const intro = allSections.find(s => s.id.endsWith('/intro') || s.data.slug === 'intro')?.data;
+const storyTired = allSections.find(s => s.id.endsWith('/story-tired') || s.data.slug === 'story-tired')?.data;
+const cls = allSections.find(s => s.id.endsWith('/cls') || s.data.slug === 'cls')?.data;
+const agility = allSections.find(s => s.id.endsWith('/agility-control') || s.data.slug === 'agility-control')?.data;
+const safety = allSections.find(s => s.id.endsWith('/safety') || s.data.slug === 'safety')?.data;
+const storyCalm = allSections.find(s => s.id.endsWith('/story-calm') || s.data.slug === 'story-calm')?.data;
+const media = allSections.find(s => s.id.endsWith('/media') || s.data.slug === 'media')?.data;
+const specs = allSections.find(s => s.id.endsWith('/specs') || s.data.slug === 'specs')?.data;
+const fit = allSections.find(s => s.id.endsWith('/fit-system') || s.data.slug === 'fit-system')?.data;
 
-const faq = allSections.find(s => s.data.slug === 'faq')?.data;
+const faq = allSections.find(s => s.id.endsWith('/faq') || s.data.slug === 'faq')?.data;
+
 
 
 // Brand Title
 const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
+
 ---
 
 <MainLayout title={pageTitle}>
@@ -48,8 +50,10 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
         </p>
 
         <p class="text-lg md:text-2xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in duration-1000 delay-700">
-          {hero?.subheading?.split('\n')[1] || "das neue Gurtzeug von Profly."}
+          {hero?.subheading?.split('\n')[1] || "KINETIC - das neue Paragliding-Gurtzeug von ProFly"}
         </p>
+
+
       </div>
 
       <div class="pt-8 flex flex-col md:flex-row gap-4 justify-center animate-in fade-in duration-1000 delay-1000 relative z-50">

@@ -1,8 +1,10 @@
-slug: hero
-type: hero
 title: Hero Section
+type: hero
 heading: KINETIC
-subheading: "pure control\ndas neue Gurtzeug von Profly."
-button_text: "Beratung anfragen / Early Access"
-button_link: "/kontakt"
-
+subheading: |-
+  pure control
+  KINETIC - das neue Paragliding-Gurtzeug von ProFly
+button_text: Beratung anfragen / Early Access
+button_link: /kontakt
+media_items: []
+items: []
