@@ -463,7 +463,7 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
     gsap.from(".feature-block", {
       scrollTrigger: {
         trigger: ".feature-grid",
-        start: "top center",
+        start: "top 95%",
       },
       x: (i) => i === 0 ? -100 : i === 2 ? 100 : 0,
       y: (i) => i === 1 ? 50 : 0,
@@ -472,6 +472,7 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
       stagger: 0.2,
       ease: "power3.out"
     });
+
   </script>
 
   <style is:global>
