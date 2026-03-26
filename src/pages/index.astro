@@ -412,22 +412,8 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade in sections
-    gsap.utils.toArray('section').forEach((section: any) => {
-      gsap.fromTo(section, 
-        { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 1, 
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
+    // Modular Stagger Entry logic
+
 
     // Parallax for floating images
     gsap.utils.toArray('img').forEach((img: any) => {
@@ -460,20 +446,33 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
     });
 
     // Feature Grid Stagger (Modular Float-in)
-    gsap.from(".feature-block", {
-      scrollTrigger: {
-        trigger: ".feature-grid",
-        start: "top 95%",
+    gsap.fromTo(".feature-block", 
+      {
+        opacity: 0,
+        x: (i) => i === 0 ? -60 : i === 2 ? 60 : 0,
+        y: (i) => i === 1 ? 40 : 0,
       },
-      x: (i) => i === 0 ? -100 : i === 2 ? 100 : 0,
-      y: (i) => i === 1 ? 50 : 0,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: "power3.out"
-    });
+      {
+        scrollTrigger: {
+          trigger: ".feature-grid",
+          start: "top 95%",
+        },
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "all"
+      }
+    );
 
+    // Refresh ScrollTrigger to sync with Snapping
+    window.addEventListener("load", () => {
+      ScrollTrigger.refresh();
+    });
   </script>
+
 
   <style is:global>
 
