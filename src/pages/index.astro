@@ -28,9 +28,9 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 ---
 
 <MainLayout title={pageTitle}>
-  <div class="modular-container">
-    {/* HERO SECTION */}
-    <section id="hero" class="modular-section relative overflow-hidden bg-body transition-colors duration-700">
+  {/* HERO SECTION */}
+  <section id="hero" class="modular-section relative overflow-hidden bg-body transition-colors duration-700">
+
       <div class="absolute inset-0 bg-gradient-to-b from-brand/20 via-body to-body opacity-80 pointer-events-none transition-colors duration-700"></div>
 
 
@@ -402,7 +402,7 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
          </div>
       </div>
    </section>
-  </div>
+
 
 
 
@@ -504,12 +504,10 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
   <style is:global>
     /* ... existing keyframes ... */
     
-    /* Modular Narrative Engine (Desktop Snap) */
+    /* Modular Narrative Engine (Root-Level Snap) */
     @media (min-width: 1024px) {
-      .modular-container {
+      html {
         scroll-snap-type: y mandatory;
-        height: 100vh;
-        overflow-y: scroll;
         scroll-behavior: smooth;
       }
       .modular-section {
@@ -522,6 +520,7 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
       }
     }
   </style>
+
 </MainLayout>
 
 
