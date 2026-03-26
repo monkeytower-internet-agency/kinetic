@@ -314,15 +314,15 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
 
       <div class="space-y-2">
          {specs?.items?.map((item: any) => (
-           <div class="group flex items-end justify-between py-6 border-b border-white/5 hover:border-brand/40 transition-colors relative overflow-hidden">
-              <span class="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-white/30 group-hover:text-white transition-colors shrink-0 mr-4">
+           <div class="group flex flex-col sm:flex-row sm:items-end justify-between py-6 border-b border-white/5 hover:border-brand/40 transition-colors relative overflow-hidden gap-2 sm:gap-4">
+              <span class="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-white/30 group-hover:text-white transition-colors shrink-0">
                 {item.label}
               </span>
               
-              {/* Technical Dotted Connector */}
-              <div class="flex-grow border-b border-dotted border-white/10 mb-1.5 opacity-40 group-hover:opacity-100 group-hover:border-brand/30 transition-all"></div>
+              {/* Technical Dotted Connector (Hidden on Mobile) */}
+              <div class="hidden sm:block flex-grow border-b border-dotted border-white/10 mb-1.5 opacity-40 group-hover:opacity-100 group-hover:border-brand/30 transition-all"></div>
               
-              <span class="text-xl md:text-2xl font-black tracking-tighter text-white/80 group-hover:text-brand transition-colors ml-4 shrink-0 transition-transform duration-300 group-hover:scale-105 origin-right">
+              <span class="text-xl md:text-2xl font-black tracking-tighter text-white/80 group-hover:text-brand transition-colors shrink-0 transition-transform duration-300 group-hover:scale-105 origin-left sm:origin-right">
                 {item.value}
               </span>
            </div>
