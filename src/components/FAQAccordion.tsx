@@ -100,9 +100,10 @@ const FAQAccordion: React.FC<Props> = ({ items }) => {
             ref={el => contentRefs.current[i] = el}
             className="overflow-hidden h-0 opacity-0"
           >
-            <div className="p-8 md:p-10 pt-0 text-white font-light leading-relaxed text-lg max-w-3xl">
+            <div className="p-8 md:p-10 pt-0 text-content/80 font-light leading-relaxed text-lg max-w-3xl">
               {item.value}
             </div>
+
           </div>
 
         </div>
