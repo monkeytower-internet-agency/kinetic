@@ -318,12 +318,9 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
               {/* Technical Dotted Connector */}
               <div class="flex-grow border-b border-dotted border-white/10 mb-1.5 opacity-40 group-hover:opacity-100 group-hover:border-brand/30 transition-all"></div>
               
-              <span class="text-xl md:text-2xl font-mono font-bold tracking-tighter text-white/80 group-hover:text-brand transition-colors ml-4 shrink-0">
+              <span class="text-xl md:text-2xl font-black tracking-tighter text-white/80 group-hover:text-brand transition-colors ml-4 shrink-0 transition-transform duration-300 group-hover:scale-105 origin-right">
                 {item.value}
               </span>
-
-              {/* Row Selector Accent */}
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
            </div>
          ))}
       </div>
@@ -444,7 +441,9 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
         if (hudText) hudText.innerText = "Playground-Mode";
       }
     });
+  </script>
   <style is:global>
+
     @keyframes radar-sweep {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
