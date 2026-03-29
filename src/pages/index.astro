@@ -45,8 +45,9 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
     <div class="md:hidden absolute right-0 top-0 bottom-0 w-[15%] z-20 pointer-events-auto touch-pan-y"></div>
 
     {/* Layer 3: Text & UI (Floating ABOVE the model) */}
-    <div id="hero-hud" class="relative z-30 space-y-4 max-w-7xl mx-auto py-10 transition-all duration-700">
+    <div id="hero-hud" class="relative z-30 space-y-4 max-w-7xl mx-auto py-16 md:py-24 transition-all duration-700">
       <div class="space-y-4">
+
         <p class="text-3xl md:text-5xl lg:text-7xl font-black tracking-[0.4em] text-brand uppercase animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-300 drop-shadow-2xl">
           {hero?.subheading?.split('\n')[0] || "- pure control -"}
         </p>
@@ -510,16 +511,20 @@ const pageTitle = "KINETIC | pure control - das neue Gurtzeug von Profly";
         scroll-snap-type: y mandatory;
         scroll-behavior: smooth;
       }
-      .modular-section {
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
+    }
+
+    .modular-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
   </style>
+
 
 </MainLayout>
 
