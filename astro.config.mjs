@@ -24,6 +24,7 @@ if (!process.env.SITE_BRANCH) {
 }
 // https://astro.build/config
 export default defineConfig({
+  site: process.env.SITE_URL || "http://localhost:4321",
   output: "server",
   adapter: node({ mode: "standalone" }),
   integrations: [react(), keystatic()],
