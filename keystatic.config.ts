@@ -1,9 +1,17 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage: import.meta.env.PROD
+    ? {
+        kind: 'github',
+        repo: {
+          owner: 'monkeytower-internet-agency',
+          name: 'kinetic',
+        },
+      }
+    : {
+        kind: 'local',
+      },
   singletons: {
     settings: singleton({
       label: 'Global Settings',
